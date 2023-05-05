@@ -1,0 +1,89 @@
+<header class="sticky-top">
+  <nave class="navbar navbar-expand-lg bg-primary">
+    <div class="container-md">
+      <h1 class="text-center mt-3" style="font-family: 'Sacrament', cursive;">Masle Eatout</h1>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto"></ul>
+        <!--会員がログインしているとき-->
+        <% if user_signed_in? %>
+        <div class="mr-5 mt-2">
+          ようこそ、<strong><%= current_user.name%></strong> さん!
+        </div>
+        <li class="list-unstyled mr-1">
+          <%= link_to user_path(current_user), class: 'nav-link text-warning' do %>
+          My page
+          <%end%>
+        </li>
+        <li class="list-unstyled mr-1">
+          <%= link_to restaurants_path, class: 'nav-link text-warning' do %>
+          rastaurants
+          <%end%>
+        </li>
+        <li class="list-unstyled mr-1">
+          <%= link_to users_path , class:'nav-link text-warning' do %>
+          Users
+          <%end%>
+        </li>
+        <li class="list-unstyled mr-1">
+          <%= link_to new_restaurant_path, class: 'nac-link text-warning' do %>
+          New Post
+          <%end%>
+        </li>
+        <li class="list-unstyled mr-1">
+          <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-warning' do %>
+          Logout
+          <%end%>
+        </li>
+
+        <!--管理者がログインしているとき-->
+        <% elsif admin_signed_in?%>
+        <div class="mt-2 mr-2">
+          <strong>管理者</strong>
+        </div>
+        <li class="list-unstyled mr-1">
+          <%= link_to admin_restaurants_path, class: 'nav-link text-warning' do %>
+          Restaurants
+          <%end%>
+        </li>
+        <li class="list-unstyled mr-1">
+          <%= link_to admin_users_path, class: 'nav-link text-warning' do %>
+          Users
+          <%end%>
+        </li>
+        <li class="list-unstyled mr-1">
+          <%= link_to destory_admin_session_path, method: :delete,class: 'nav-link text-warning' do %>
+          Logout
+          <%end%>
+        </li>
+
+        <!--ゲストがログインしているとき-->
+        <% else %>
+        <div class="mr-5 mt-2">
+          ようこそ、<strong>ゲスト</strong> さん！
+        </div>
+        <li class="list-unstyled mr-1">
+          <%= link_to root_path, class:'btn bg-warning' do %>
+          <i class="fas fa-hamburger"></i>Top
+          <%end%>
+        </li>
+        <li class="list-unstyled mr-1">
+          <%= link_to about_path, class:'btn bg-warning' do %>
+          <i class="fas fa-utensils"></i>About
+          <%end%>
+        </li>
+        <li class="list-unstyled mr-1">
+          <%= link_to new_user_registration_path, class:'btn bg-warning' do %>
+          <i class="fas fa-user-plus"></i>Sign up
+          <%end%>
+        </li>
+        <li class="list-unstyled" >
+          <%= link_to new_user_session_path, class:'btn bg-warning' do %>
+          <i class="fas fa-sign-in-alt"></i>Log in
+          <%end%>
+        </li>
+        <%end%>
+        </ul>
+      </div>
+    </div>
+  </nave>
+</header>

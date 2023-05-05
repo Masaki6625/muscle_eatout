@@ -1,0 +1,14 @@
+<h1>
+  <strong><%= @restaurant.shop_name %></strong> の詳細
+</h1>
+
+<div>
+  <%= image_tag @restaurant.get_image %>
+  <p>店名：<%= @restaurant.shop_name %></p>
+  <p>お店紹介：<%= @restaurant.introduction %></p>
+  <p>投稿者：<%= @restaurant.user.name %></p>
+  <p>投稿日：<%= @restaurant.created_at.strftime('%Y/%m/%d') %></p>
+  <% if @restaurant.user == current_user %>
+    <%= link_to "削除する", restaurant_path(@restaurant), method: :delete, class: "btn btn-danger btn-lg" %>
+  <%end%>
+</div>

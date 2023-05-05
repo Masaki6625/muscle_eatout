@@ -1,0 +1,14 @@
+<div>
+  <%= flash[:notice] %>
+</div>
+
+<h1>レストラン一覧</h1>
+<% @restaurants.each do |restaurant| %>
+<div>
+  <%= link_to restaurant_path(restaurant.id) do %>
+    <%= image_tag restaurant.get_image %>
+  <%end%>
+  <p>店名：<%= restaurant.shop_name %></p>
+  <p>投稿者：<%= restaurant.user.name %></p>
+</div>
+<%end%>
