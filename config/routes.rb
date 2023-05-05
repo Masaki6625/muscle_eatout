@@ -21,8 +21,8 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about'
     get 'users/withdraw' => 'users#withdraw'
     patch 'users/unsubscribe' => 'users#unsubscribe'
-    resources :restaurants, only: [:new, :index, :create, :show, :edit, :destroy]
-    resources :users, only: [:index, :show, :edit]
+    resources :restaurants, only: [:new, :index, :create, :show, :edit, :update, :destroy]
+    resources :users, only: [:index, :show, :edit, :update]
     resource :comments, only: [:create, :destory]
     resource :favorites, only: [:create, :destory]
     resource :relationships, only: [:create, :destory]

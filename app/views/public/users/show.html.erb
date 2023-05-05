@@ -1,1 +1,32 @@
+<div class= "container px-5 px-sm-0">
+  <div class='row'>
+    <div class="col-md-3">
+      <!--ユーザーの情報-->
 
+        <h3><%= @user.name %></h3>
+        <%= image_tag @user.get_profile_image(100,100) %>
+    </div>
+     <div class="col-md-8">
+      <div class= "top">
+      <h1 class ="mb-3 pt-3">ユーザ詳細</h1>
+      </div>
+
+      <!--ユーザーの投稿した店舗一覧-->
+      <div class= "row">
+      <% @restaurant.each do |restaurant| %>
+      <div class="col-sm-6 col-md-4 mb-4">
+          <div class="card">
+        <%= link_to restaurant_path(restaurant.id) do %>
+          <%= image_tag restaurant.get_image(230,226), class: "cord-img-top" %>
+        <%end%>
+        <div class="card-body">
+        <h5 class="card-title">店名：<%= restaurant.shop_name %></h5>
+        <p class="cart-text">投稿日：<%= restaurant.created_at.strftime('%Y/%m/%d') %></p>
+      </div>
+      </div>
+          </div>
+      <%end%>
+      </div>
+    </div>
+  </div>
+  </div>

@@ -1,14 +1,47 @@
-<h1>
-  <strong><%= @restaurant.shop_name %></strong> の詳細
-</h1>
-
-<div>
-  <%= image_tag @restaurant.get_image %>
-  <p>店名：<%= @restaurant.shop_name %></p>
-  <p>お店紹介：<%= @restaurant.introduction %></p>
-  <p>投稿者：<%= @restaurant.user.name %></p>
-  <p>投稿日：<%= @restaurant.created_at.strftime('%Y/%m/%d') %></p>
-  <% if @restaurant.user == current_user %>
-    <%= link_to "削除する", restaurant_path(@restaurant), method: :delete, class: "btn btn-danger btn-lg" %>
-  <%end%>
+<div class="container text-center">
+  <h1>
+    <strong><%= @restaurant.shop_name %></strong> の詳細
+  </h1>
+  <div class="row">
+    <div class="col-md-10 ml-5">
+      <table class="table mt-5">
+        <tr>
+          <td>画像</td>
+          <td><%= image_tag @restaurant.get_image(250,250) %></td>
+        </tr>
+        <tr>
+          <td>店名</td>
+          <td><%= @restaurant.shop_name %></td>
+        </tr>
+        <tr>
+          <td>お店紹介</td>
+          <td><%= @restaurant.introduction %></td>
+        </tr>
+        <tr>
+          <td>投稿者</td>
+            <td><%= link_to user_path(@restaurant.user.id) do %>
+            <%= @restaurant.user.name %>
+            <%end%>
+          </td>
+        </tr>
+        <tr>
+          <td>投稿日</td>
+          <td><%= @restaurant.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <% if @restaurant.user == current_user %>
+    <div class="col-sm-6">
+      <%= link_to "削除する", restaurant_path(@restaurant), method: :delete, class: "btn btn-danger btn-lg" %>
+    </div>
+    <div class="col-sm-6">
+      <%= link_to "変更する", edit_restaurant_path(@restaurant.id), class: "btn btn-success btn-lg" %>
+    </div>
+    <%end%>
+  </div>
+  <div class="text-center mb-5">
+    <%= link_to "戻る", restaurants_path, class: "btn btn-dark btn-sm" %>
+  </div>
 </div>

@@ -1,1 +1,25 @@
-<h1>会員の一覧ページです</h1>
+<div class= "container px-5 px-sm-0">
+  <div class='row'>
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-8">
+      <div class= "top">
+      <h1>ユーザー 一覧</h1>
+      </div>
+      <div class= "row">
+      <% @users.each do |user| %>
+      <div class="col-sm-6 col-md-4 mb-4">
+          <div class="card">
+      <%= link_to user_path(user.id) do %>
+      <%= image_tag user.get_profile_image(230,200) %>
+      <%end%>
+       <div class="card-body">
+      <h4 class="card-title">名前:<%= user.name %></h4>
+       </div>
+          </div>
+        </div>
+      <%end%>
+          </div>
+  </div>
+</div>
+</div>
