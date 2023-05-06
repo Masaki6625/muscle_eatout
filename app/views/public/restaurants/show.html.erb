@@ -1,9 +1,12 @@
 <div class="container text-center">
+  
   <h1>
     <strong><%= @restaurant.shop_name %></strong> の詳細
   </h1>
+  
   <div class="row">
     <div class="col-md-10 ml-5">
+  
       <table class="table mt-5">
         <tr>
           <td>画像</td>
@@ -31,17 +34,40 @@
       </table>
     </div>
   </div>
+  
   <div class="row">
     <% if @restaurant.user == current_user %>
     <div class="col-sm-6">
       <%= link_to "削除する", restaurant_path(@restaurant), method: :delete, class: "btn btn-danger btn-lg" %>
     </div>
+  
     <div class="col-sm-6">
       <%= link_to "変更する", edit_restaurant_path(@restaurant.id), class: "btn btn-success btn-lg" %>
     </div>
     <%end%>
   </div>
+  
+  <div class="text-center">
+    <p>コメント件数：<%= @restaurant.comments.count %></p>
+    <% @restaurant.comments.each do |comment| %>
+    <p><%= image_tag comment.user.get_profile_image(80,80) %></p>
+    <%= comment.user.name %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+      <%if comment.user == current_user %>
+        <%= link_to "削除", restaurant_comment_path(comment.restaurant, comment), method: :delete %>
+      <%end%>
+    <%end%>
+  </div>
+  
+  <div>
+    <%= form_with model: [@restaurant, @comment] do |f| %>
+    <%= f.text_area :comment, row: 5, placeholder: "ここにコメントしてください" %>
+    <%= f.submit "送信する" %>
+    <%end%>
+  </div>
+  
   <div class="text-center mb-5">
     <%= link_to "戻る", restaurants_path, class: "btn btn-dark btn-sm" %>
   </div>
+
 </div>

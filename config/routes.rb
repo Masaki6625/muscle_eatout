@@ -19,9 +19,11 @@ Rails.application.routes.draw do
   scope module: :public do
     root :to => 'homes#top'
     get 'about' => 'homes#about'
-    get 'users/withdraw' => 'users#withdraw'
-    patch 'users/unsubscribe' => 'users#unsubscribe'
-    resources :restaurants, only: [:new, :index, :create, :show, :edit, :update, :destroy]
+    get 'users/withdraw' => 'users#withdraw', as: 'withdraw'
+    patch 'users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+    resources :restaurants, only: [:new, :index, :create, :show, :edit, :update, :destroy] do
+      resources :comments, only: [:create, :destroy]
+    end
     resources :users, only: [:index, :show, :edit, :update]
     resource :comments, only: [:create, :destory]
     resource :favorites, only: [:create, :destory]

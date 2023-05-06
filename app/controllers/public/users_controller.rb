@@ -1,7 +1,7 @@
 class Public::UsersController < ApplicationController
   
   def index
-    @users = User.all
+    @users = User.where(is_deleted: false)
   end
   
   def show
@@ -23,6 +23,11 @@ class Public::UsersController < ApplicationController
   end
 
   def unsubscribe
+    @user = current_user
+    @user.update(is_deleted: true)
+    reset_session
+    flash[:notice] = "退会処理を実行しました"
+    redirect_to root_path
   end
   
   private

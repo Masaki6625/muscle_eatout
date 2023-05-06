@@ -1,2 +1,8 @@
-<h1>Public::Users#withdraw</h1>
-<p>Find me in app/views/public/users/withdraw.html.erb</p>
+<h2>退会のお手続き</h2>
+<p>
+  退会お手続きをされますと、全ての会員でのサービスがご利用いただけなくなります。<br>
+  再度ご利用いただく場合は、新規登録のお手続きが必要になります。<br>
+  本当に退会してよろしいですか?
+</p>
+<%= link_to "退会する", unsubscribe_path, method: :patch, data: { confilm: "本当に退会しますか？"}, class: "btn btn-danger btn-lg" %>
+<%= link_to "キャンセル", edit_user_path(current_user), class: "btn btn-primary btn-lg" %>

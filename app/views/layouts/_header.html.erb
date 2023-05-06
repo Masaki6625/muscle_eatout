@@ -14,28 +14,28 @@
           さん！
         </div>
         <li class="list-unstyled mr-1">
-          <%= link_to user_path(current_user), class: 'nav-link text-warning' do %>
-          My page
+          <%= link_to user_path(current_user), class: 'btn bg-warning' do %>
+          <i class="fas fa-user-clock"></i>My page
           <%end%>
         </li>
         <li class="list-unstyled mr-1">
-          <%= link_to restaurants_path, class: 'nav-link text-warning' do %>
-          rastaurants
+          <%= link_to restaurants_path, class: 'btn bg-warning' do %>
+          <i class="fas fa-store"></i>レストラン一覧
           <%end%>
         </li>
         <li class="list-unstyled mr-1">
-          <%= link_to users_path(current_user.id) , class:'nav-link text-warning' do %>
-          Users
+          <%= link_to users_path(current_user.id) , class:'btn bg-warning' do %>
+            <i class="fas fa-users"></i>会員一覧
           <%end%>
         </li>
         <li class="list-unstyled mr-1">
-          <%= link_to new_restaurant_path, class: 'nac-link text-warning' do %>
-          New Post
+          <%= link_to new_restaurant_path, class: 'btn bg-warning' do %>
+          <i class="fas fa-plus-circle"></i>新規投稿
           <%end%>
         </li>
         <li class="list-unstyled mr-1">
-          <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-warning' do %>
-          Logout
+          <%= link_to destroy_user_session_path, method: :delete, class: 'btn bg-warning' do %>
+          <i class="fas fa-sign-out-alt"></i>Logout
           <%end%>
         </li>
 
@@ -45,18 +45,18 @@
           <strong>管理者</strong>
         </div>
         <li class="list-unstyled mr-1">
-          <%= link_to admin_restaurants_path, class: 'nav-link text-warning' do %>
-          Restaurants
+          <%= link_to admin_restaurants_path, class: 'btn bg-warning' do %>
+          <i class="fas fa-store"></i>レストラン一覧
           <%end%>
         </li>
         <li class="list-unstyled mr-1">
-          <%= link_to admin_users_path, class: 'nav-link text-warning' do %>
-          Users
+          <%= link_to admin_users_path, class: 'btn bg-warning' do %>
+          <i class="fas fa-users"></i>会員一覧
           <%end%>
         </li>
         <li class="list-unstyled mr-1">
-          <%= link_to destory_admin_session_path, method: :delete,class: 'nav-link text-warning' do %>
-          Logout
+          <%= link_to destory_admin_session_path, method: :delete,class: 'btn bg-warning' do %>
+          <i class="fas fa-sign-out-alt"></i>Logout
           <%end%>
         </li>
 

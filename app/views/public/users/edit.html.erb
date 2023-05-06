@@ -15,8 +15,13 @@
 <label for="inputIntroduction">自己紹介</label>
 <%= f.text_area :user_introduction, id:"inputIntroduction", placeholder:"自己紹介" %>
 </div>
-<div class="text-center mb-5">
+</div>
+<div class="row">
+<div class="col-sm-2">
 <%= f.submit "プロフィールを変更", class: "btn btn-success btn-lg" %>
+</div>
+<div class="col-sm-2">
+  <%= link_to "退会する", withdraw_path(current_user), class: "btn btn-danger btn-lg" %>
 </div>
 <%end%>
 </div>
