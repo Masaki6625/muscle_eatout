@@ -1,13 +1,30 @@
-<div class="container text-center">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="assets/image/saradabar.jpeg">
-    </div>
-  </div>
-  <h2>Muscle Eatout</h2>    
-  <p>食べるをもっと楽しく</p>
+<div class="container-fluid mt-4 mb-5">
+  <!--<div class="row">-->
+  <!--  <div class="col-xs-12 cover-img" style="background-image:url('app/assets/images/saladabar.jpng')">-->
+  <!--    <div class="cover-text text-center">-->
+  <!--      <h2>Muscle Eatout</h2>-->
+  <!--      <p>-->
+  <!--        食べるをもっと楽しく<br>-->
+  <!--        もっと自分らしく-->
+  <!--      </p>-->
+  <!--      </div>-->
+  <!--  </div>-->
+  <!--</div>-->
 
-   <div class="btn-wrapper col-10 mx-auto">
+  <div class="position-relative w-100 h-100 mb-5">
+      <%= image_tag 'saladbar.jpg', class: 'd-block mx-auto', style: 'width: 95%; height: 300px; object-fit: cover;' %>
+      <div class="position-absolute d-flex flex-column justify-content-center align-items-center w-100 h-100" style="top: 0; left: 0; background-color: rgba(255, 255, 255, .5)">
+        <h2 style="font-size: calc(20px + 3.5vw);">Muscle Eatout</h2>
+        <p class="text-center" style="font-size: calc(12px + 1.1vw);">
+          食べるを楽しく<br>
+          もっと自分らしく
+        </p>
+      </div>
+  </div>
+
+
+
+   <div class="btn-wrapper col-6 mx-auto">
     <div class="row">
       <%= link_to"Sign up", new_user_registration_path, class:"btn btn-success btn-sm btn-block mb-3 sign_up" %>
     </div>
@@ -15,4 +32,5 @@
       <%= link_to "Log in", new_user_session_path , class:"btn btn-info btn-sm btn-block sign_in" %>
     </div>
   </div>
+</div>
 </div>

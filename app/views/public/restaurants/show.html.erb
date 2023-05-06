@@ -47,6 +47,22 @@
     <%end%>
   </div>
   
+  <div class="text-container">
+    <% if @restaurant.favorited_by?(current_user) %>
+    <p>
+      <%= link_to restaurant_favorites_path(@restaurant), method: :delete do %>
+       ❤<%= @restaurant.favorites.count %>いいね
+       <%end%>
+    </p>
+    <%else%>
+    <p>
+      <%= link_to restaurant_favorites_path(@restaurant), method: :post do %>
+       ♡<%= @restaurant.favorites.count %>いいね
+       <%end%>
+    </p>
+    <%end%>
+  </div>
+  
   <div class="text-center">
     <p>コメント件数：<%= @restaurant.comments.count %></p>
     <% @restaurant.comments.each do |comment| %>
