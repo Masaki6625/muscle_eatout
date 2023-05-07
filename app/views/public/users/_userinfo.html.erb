@@ -1,0 +1,16 @@
+<p><%= image_tag user.get_profile_image(150,150) %></p>
+<table class= "table table-striped">
+    <thead>
+        <tr>
+            <th>name</th>
+            <th><%= user.name %></th>
+        </tr>
+        <tr>
+            <th>introduction</th>
+            <th><%= user.user_introduction %></th>
+        </tr>
+    </thead>
+</table>
+<%= link_to edit_user_path(user.id), class: "btn btn-outline-secondary btn-block " do  %>
+<i class="fas fa-user-cog"></i>
+<% end %>

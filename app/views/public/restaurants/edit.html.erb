@@ -5,18 +5,23 @@
 
     <%= form_with model: @restaurant, url: restaurant_path(@restaurant.id),method: :patch do |f| %>
       <div class="form_group pt-4 pb-3 ml-5">
-        <label for="inputImage">画像</label>
+        <label for="inputImage">画像:</label>
         <%= f.file_field :image, placeholder: "プロフィール画像", accept: "image/*" %>
     </div>
 
     <div class="form-group pt-1 pb-3 ml-5">
-      <label for="inputName">名前</label>
+      <label for="inputName">名前:</label>
       <%= f.text_field :shop_name, autofocus: true, id:"inputName", placeholder:"名前" %>
     </div>
 
     <div class="form-group pb-3 ml-3">
-      <label for="inputIntroduction">お店紹介</label>
+      <label for="inputIntroduction">お店紹介:</label>
       <%= f.text_area :introduction, id:"inputIntroduction", placeholder: "お店紹介" %>
+    </div>
+
+    <div class="form-group ml-5">
+      <label for="inputTag">タグ：</label>
+      <%= f.text_field :name, id:"inputTag", placeholder: ",(半角）で区切ると複数個タグを登録できます" %>
     </div>
     <div class="text-center mb-5">
       <%= f.submit "情報を変更する", class: "btn btn-success btn-lg" %>

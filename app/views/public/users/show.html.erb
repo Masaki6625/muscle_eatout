@@ -2,13 +2,11 @@
   <div class='row'>
     <div class="col-md-3">
       <!--ユーザーの情報-->
-
-        <h3><%= @user.name %></h3>
-        <%= image_tag @user.get_profile_image(100,100) %>
+      <%= render 'public/users/userinfo', user: @user %>
     </div>
      <div class="col-md-8">
       <div class= "top">
-      <h1 class ="mb-3 pt-3">ユーザ詳細</h1>
+      <h1 class ="mb-3 pt-3"><%= @user.name %>さんの投稿詳細</h1>
       </div>
 
       <!--ユーザーの投稿した店舗一覧-->

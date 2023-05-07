@@ -5,28 +5,51 @@ class Public::RestaurantsController < ApplicationController
 
   def create
     @restaurant = Restaurant.new(restaurant_params)
-    @restaurant.user_id = current_user.id
-    @restaurant.save
-    redirect_to restaurant_path(@restaurant.id)
+      @restaurant.user_id = current_user.id
+      tag_list = params[:restaurant][:name].split(',')
+      if  @restaurant.save
+          @restaurant.save_tag(tag_list)
+          redirect_to restaurant_path(@restaurant.id)
+      else  
+        render :new
+      end
   end
 
   def index
-    @restaurants = Restaurant.all
+    @q = Restaurant.ransack(params[:q])
+    @restaurants = @q.result(distinct: true)
+    @tag_list = Tag.all
+    if params[:tag_id].present?
+      @tag = Tag.find(params[:tag_id])
+      @restaurants = @tag.restaurants
+    end
   end
 
   def show
     @restaurant = Restaurant.find(params[:id])
     @comment = Comment.new
+    @restaurant_tags = @restaurant.tags
+    @tags = Tag.all
+    if params[:tag_id].present?
+      @tag = Tag.find(params[:tag_id])
+      @restaurant = @tag.restaurants
+    end
   end
 
   def edit
     @restaurant = Restaurant.find(params[:id])
+    @tag_list = @restaurant.tags.pluck(:name).join(',')
   end
   
   def update
     @restaurant = Restaurant.find(params[:id])
-    @restaurant.update(restaurant_params)
-    redirect_to restaurant_path(@restaurant.id)
+    tag_list = params[:restaurant][:name].split(',')
+    if  @restaurant.update(restaurant_params)
+        @restaurant.save_tag(tag_list)
+        redirect_to restaurant_path(@restaurant.id)
+    else
+      render :edit
+    end
   end
 
   def destroy

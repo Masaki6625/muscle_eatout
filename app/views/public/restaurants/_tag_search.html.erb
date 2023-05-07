@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-header">
+    <h5 class= "card-title">タグ検索</h5>
+  </div>
+
+  <div class="card-body">
+    <div class="tags">
+      <% tags.each do |tag| %>
+      <p>
+        <%= link_to tag.name, restaurants_path(tag_id: tag.id), class: "card-link text-secondaty" %>
+      </p>
+      <%end%>
+    </div>
+  </div>
+</div>

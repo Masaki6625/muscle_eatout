@@ -1,12 +1,14 @@
 <div class="container text-center">
-  
-  <h1>
-    <strong><%= @restaurant.shop_name %></strong> の詳細
-  </h1>
-  
   <div class="row">
-    <div class="col-md-10 ml-5">
+    <div class="col-md-2">
+      <%= render 'public/restaurants/tag_search', tags: @tags %>
+    </div>
+
+    <h1>
+      <strong><%= @restaurant.shop_name %></strong> の詳細
+    </h1>
   
+    <div class="col-md-6 ml-5">
       <table class="table mt-5">
         <tr>
           <td>画像</td>
@@ -31,22 +33,30 @@
           <td>投稿日</td>
           <td><%= @restaurant.created_at.strftime('%Y/%m/%d') %></td>
         </tr>
+        <tr>
+          <td>タグ</td>
+          <td>
+            <% @restaurant_tags.each do |tag| %>
+            <%= tag.name %>
+            <%end%>
+          </td>
+        </tr>
       </table>
     </div>
   </div>
-  
+
   <div class="row">
     <% if @restaurant.user == current_user %>
-    <div class="col-sm-6">
+    <div class="col-md-2">
       <%= link_to "削除する", restaurant_path(@restaurant), method: :delete, class: "btn btn-danger btn-lg" %>
     </div>
-  
-    <div class="col-sm-6">
+
+    <div class="col-md-2">
       <%= link_to "変更する", edit_restaurant_path(@restaurant.id), class: "btn btn-success btn-lg" %>
     </div>
     <%end%>
   </div>
-  
+
   <div class="text-container">
     <% if @restaurant.favorited_by?(current_user) %>
     <p>
@@ -62,7 +72,7 @@
     </p>
     <%end%>
   </div>
-  
+
   <div class="text-center">
     <p>コメント件数：<%= @restaurant.comments.count %></p>
     <% @restaurant.comments.each do |comment| %>
@@ -74,16 +84,15 @@
       <%end%>
     <%end%>
   </div>
-  
+
   <div>
     <%= form_with model: [@restaurant, @comment] do |f| %>
     <%= f.text_area :comment, row: 5, placeholder: "ここにコメントしてください" %>
     <%= f.submit "送信する" %>
     <%end%>
   </div>
-  
+
   <div class="text-center mb-5">
     <%= link_to "戻る", restaurants_path, class: "btn btn-dark btn-sm" %>
   </div>
-
 </div>
