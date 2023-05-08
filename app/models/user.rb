@@ -4,12 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  #def self.guest
-    #find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |user|
-    #user.password = SecureRandom.urlsafe_base64
-    #user.name = "guestuser"
-    #end
-  #end
+  def self.guest
+    find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |user|
+    user.password = SecureRandom.urlsafe_base64
+    user.name = "guestuser"
+    end
+  end
   
   #ユーザーに紐づく情報を削除する。
   after_update :destroy_unsubscribe_user_info, if: -> { saved_change_to_is_deleted?(from:false,to:true) }

@@ -11,14 +11,14 @@
       <div class="top">
         <h1>レストラン一覧</h1>
         <h3>検索</h3>
-        <%= search_form_for @q, url: restaurants_path do |f| %>
+        <%= search_form_for @q2, url: restaurants_path do |f| %>
           <%= f.label :shop_name, 'レストラン名' %>
           <%= f.search_field :shop_name_cont %>
           <%= f.submit '検索', class: "btn btn-primary btn-sm" %>
           <%end%>
       </div>
-      
-      
+
+
       <div class="row">
         <% @restaurants.each do |restaurant| %>
         <div class="col-sm-6 col-md-4 mb-5">

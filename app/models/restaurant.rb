@@ -11,12 +11,15 @@ class Restaurant < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
     ["created_at", "id", "introduction", "shop_name", "updated_at", "user_id"]
   end
-
+  
   #いいね機能でユーザーがいいねをしているか調べている。
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
-
+  
+  def self.ransackable_associations(auth_object = nil)
+    ["tags"]
+  end
   #active strageの画像の大きさを変更できるメソッド。
   def get_image(width,height)
     unless image.attached?

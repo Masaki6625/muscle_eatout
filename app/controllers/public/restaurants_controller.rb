@@ -10,18 +10,25 @@ class Public::RestaurantsController < ApplicationController
       if  @restaurant.save
           @restaurant.save_tag(tag_list)
           redirect_to restaurant_path(@restaurant.id)
-      else  
+      else
         render :new
       end
   end
 
   def index
-    @q = Restaurant.ransack(params[:q])
-    @restaurants = @q.result(distinct: true)
-    @tag_list = Tag.all
+    @q2 = Restaurant.ransack(params[:q])
+    @restaurants = @q2.result(distinct: true)
+    @q = Tag.ransack(params[:q])
+    @tag_list = @q.result(distinct: true)
     if params[:tag_id].present?
       @tag = Tag.find(params[:tag_id])
       @restaurants = @tag.restaurants
+    end
+
+    if params[:q].present? && params[:q][:name_cont].present?
+      restrant_tags = RestaurantTag.where(tag_id: @tag_list.pluck(:id))
+      @restaurants = Restaurant.where(id: restrant_tags.pluck(:restaurant_id))
+      # pp @tag_list,restrant_tags, @restaurants
     end
   end
 
@@ -29,7 +36,8 @@ class Public::RestaurantsController < ApplicationController
     @restaurant = Restaurant.find(params[:id])
     @comment = Comment.new
     @restaurant_tags = @restaurant.tags
-    @tags = Tag.all
+    @q = @restaurant.tags.ransack(params[:q])
+    @tags = @q.result(distinct: true)
     if params[:tag_id].present?
       @tag = Tag.find(params[:tag_id])
       @restaurant = @tag.restaurants
@@ -40,7 +48,7 @@ class Public::RestaurantsController < ApplicationController
     @restaurant = Restaurant.find(params[:id])
     @tag_list = @restaurant.tags.pluck(:name).join(',')
   end
-  
+
   def update
     @restaurant = Restaurant.find(params[:id])
     tag_list = params[:restaurant][:name].split(',')

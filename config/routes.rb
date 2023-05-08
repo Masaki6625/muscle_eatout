@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
   
-   
+  devise_scope :user do
+       post 'users/guest_sign_in' => 'public/sessions#guest_sign_in', as: 'guest_user'
+  end
 
 
   namespace :admin do
@@ -24,7 +26,6 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about'
     get 'users/withdraw' => 'users#withdraw', as: 'withdraw'
     patch 'users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
-    #post 'users/guest_sign_in' => 'sesseion/sessions#guest_sign_in', as: 'guest_user'
       resources :restaurants, only: [:new, :index, :create, :show, :edit, :update, :destroy] do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]

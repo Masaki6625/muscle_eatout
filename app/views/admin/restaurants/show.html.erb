@@ -1,2 +1,23 @@
-<h1>Admin::Restaurants#show</h1>
-<p>Find me in app/views/admin/restaurants/show.html.erb</p>
+<h1><%= @restaurant.shop_name %>　の詳細</h1>
+<div>
+  <table>
+    <tr>
+      <th>画像</th>
+      <th>店名</th>
+      <th>コメント</th>
+    </tr>
+    <tr>
+      <td>
+        <%= image_tag @restaurant.get_image(100,100) %>
+      </td>
+      <td>
+        <%= @restaurant.shop_name %>
+      </td>
+      <td>
+        <% @restaurant.comments.each do |comment| %>
+        <%= comment.coment %><br>
+        <%end%>
+      </td>
+    </tr>
+  </table>
+</div>
