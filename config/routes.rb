@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
+    
   }
 
   devise_for :users,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+  
+   
 
 
   namespace :admin do
@@ -21,16 +24,17 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about'
     get 'users/withdraw' => 'users#withdraw', as: 'withdraw'
     patch 'users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
-    resources :restaurants, only: [:new, :index, :create, :show, :edit, :update, :destroy] do
+    #post 'users/guest_sign_in' => 'sesseion/sessions#guest_sign_in', as: 'guest_user'
+      resources :restaurants, only: [:new, :index, :create, :show, :edit, :update, :destroy] do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
-    resources :users, only: [:index, :show, :edit, :update]
+    resources :users, only: [:index, :show, :edit, :update] 
     resource :comments, only: [:create, :destory]
     resource :favorites, only: [:create, :destory]
     resource :relationships, only: [:create, :destory]
+    
   end
-
-
+ 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

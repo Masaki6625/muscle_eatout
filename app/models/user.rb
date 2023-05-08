@@ -4,12 +4,21 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  #def self.guest
+    #find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |user|
+    #user.password = SecureRandom.urlsafe_base64
+    #user.name = "guestuser"
+    #end
+  #end
+  
+  #ユーザーに紐づく情報を削除する。
   after_update :destroy_unsubscribe_user_info, if: -> { saved_change_to_is_deleted?(from:false,to:true) }
 
   has_one_attached :profile_image
   has_many :restaurants, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+
 
     #is_deletedがfalseならtrueを返すようにしている
   def active_for_authentication?

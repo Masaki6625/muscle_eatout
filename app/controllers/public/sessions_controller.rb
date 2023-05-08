@@ -2,6 +2,12 @@
 
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
+  
+  #def guest_sign_in
+    #user = User.guest
+    #sign_in user
+    #redirect_to root_path, notice: "guestuserでログインしました。"
+  #end
 
   # GET /resource/sign_in
   # def new
@@ -24,6 +30,12 @@ class Public::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+  
+  def after_sign_in_path_for(resource)
+    flash[:notice] = "ログインに成功しました！"
+    restaurants_path
+  end
+  
   protected
   
   #退会後、同じアカウントは使用できないようにしている。

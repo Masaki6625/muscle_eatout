@@ -1,2 +1,17 @@
-<h1>Admin::Users#index</h1>
-<p>Find me in app/views/admin/users/index.html.erb</p>
+<h1>登録されているユーザー 一覧</h1>
+<dvi>
+<table>
+<tr>
+  <th>イメージ</th>
+  <th>名前</th>
+  <th>コメント数</th>
+</tr>
+<% @users.each do |user| %>
+<tr>
+<td><%= image_tag user.get_profile_image(100,100) %></td>
+<td><%= user.name %></td>
+<td><%= user.comments.count %></td>
+</tr>
+<%end%>
+</table>
+</div>
