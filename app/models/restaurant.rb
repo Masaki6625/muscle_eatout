@@ -14,7 +14,7 @@ class Restaurant < ApplicationRecord
   
   #いいね機能でユーザーがいいねをしているか調べている。
   def favorited_by?(user)
-    favorites.exists?(user_id: user.id)
+    user.present? && favorites.exists?(user_id: user.id)
   end
   
   def self.ransackable_associations(auth_object = nil)

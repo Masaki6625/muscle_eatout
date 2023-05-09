@@ -7,6 +7,7 @@
      <div class="col-md-8">
       <div class= "top">
       <h1 class ="mb-3 pt-3"><%= @user.name %>さんの投稿詳細</h1>
+        <p><%=link_to"お気に入り記事",favorites_user_path(@user) %></p>
       </div>
 
       <!--ユーザーの投稿した店舗一覧-->

@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   namespace :admin do
     #root :to => "public/homes#top"
     resources :restaurants, only: [:index, :show]
-    resources :users, only: [:index, :show]
+    resources :users, only: [:index, :show, :destroy]
     resource :comments, only: [:create, :destory]
   end
 
@@ -30,11 +30,14 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
-    resources :users, only: [:index, :show, :edit, :update] 
+    resources :users, only: [:index, :show, :edit, :update] do
+    member do
+    get :favorites
+    end
+  end
     resource :comments, only: [:create, :destory]
     resource :favorites, only: [:create, :destory]
     resource :relationships, only: [:create, :destory]
-    
   end
  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

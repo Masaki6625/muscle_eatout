@@ -35,10 +35,11 @@ before_action :authenticate_user!
     redirect_to root_path
   end
   
-  # favorites
-    #favorite = Favorite.where(user_id: @user.id).pluck(:restaurant_id)
-    #@favorite_restaurants = Restaurant.find(favorites)
-  #end
+  def favorites
+    @user = User.find(params[:id])
+    favorites = Favorite.where(user_id: @user.id).pluck(:restaurant_id)
+    @favorite_restaurants = Restaurant.find(favorites)
+  end
 
   private
 

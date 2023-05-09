@@ -14,7 +14,7 @@
             <%= image_tag restaurant.get_image(100,100) %>
           </td>
           <td>
-            <%= link_to restaurant_path(restaurant.id) do %>
+            <%= link_to admin_restaurant_path(restaurant.id) do %>
             <%= restaurant.shop_name %>
             <%end%>
           </td>

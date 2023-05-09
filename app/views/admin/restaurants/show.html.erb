@@ -15,7 +15,8 @@
       </td>
       <td>
         <% @restaurant.comments.each do |comment| %>
-        <%= comment.coment %><br>
+        <%= comment.comment %><br>
+        <%= link_to "削除", restaurant_comment_path(comment.restaurant, comment), method: :delete %>
         <%end%>
       </td>
     </tr>

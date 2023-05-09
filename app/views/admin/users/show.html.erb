@@ -6,11 +6,11 @@
       <th>店名</th>
       <th>コメント数</th>
     </tr>
-    <% @restaurant.each do |restaurant| %>
+      <% @restaurant.each do |restaurant| %>
     <tr>
       <td><%= image_tag restaurant.get_image(100,100) %></td>
       <td>
-         <%= link_to admin_restaurant_path(@user.id) do %>
+         <%= link_to admin_restaurant_path(restaurant.id) do %>
         <%= restaurant.shop_name %>
         <%end%>
       </td>
