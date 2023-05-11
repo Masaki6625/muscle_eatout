@@ -3,13 +3,17 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
+  #ゲストログイン機能のユーザー情報を設定しています。
   def self.guest
     find_or_create_by!(name: 'guestuser' ,email: 'guest@example1.com') do |user|
     user.password = SecureRandom.urlsafe_base64
     user.name = "guestuser"
     end
   end
+
+  has_many :user_rooms
+  has_many :chats
+  has_many :rooms, through: :user_rooms
   
   #ユーザーに紐づく情報を削除する。
   after_update :destroy_unsubscribe_user_info, if: -> { saved_change_to_is_deleted?(from:false,to:true) }
@@ -19,6 +23,25 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  #フォローした、されたの関係
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+
+  #一覧画面で使う
+  has_many :followings, through: :relationships, source: :followed
+  has_many :followers, through: :reverse_of_relationships, source: :follower
+
+  def follow(user_id)
+    relationships.create(followed_id: user_id)
+  end
+
+  def unfollow(user_id)
+    relationships.find_by(followed_id: user_id).destroy
+  end
+
+  def following?(user)
+    followings.include?(user)
+  end
 
     #is_deletedがfalseならtrueを返すようにしている
   def active_for_authentication?

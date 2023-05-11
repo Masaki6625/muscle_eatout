@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
-    
+
   }
 
   devise_for :users,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
-  
+
   devise_scope :user do
        post 'users/guest_sign_in' => 'public/sessions#guest_sign_in', as: 'guest_user'
   end
@@ -37,8 +37,11 @@ Rails.application.routes.draw do
   end
     resource :comments, only: [:create, :destory]
     resource :favorites, only: [:create, :destory]
-    resource :relationships, only: [:create, :destory]
+    resource :relationships, only: [:create, :destroy]
+    get 'followings' => 'relationships#followings', as: 'followings'
+    get 'followers' => 'relationships#followers', as: 'followers'
+    resources :chats, only: [:show, :create]
   end
- 
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
