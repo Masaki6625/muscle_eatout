@@ -2,30 +2,19 @@
   <%= flash[:notice] %>
 </div>
 
-<div class="container">
+<div class="container px-6">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-lg-3 h-100">
       <%= render 'public/restaurants/tag_search', tags: @tag_list %>
     </div>
-    <div class="col-md-9">
-      <div class="top">
-        <h1>レストラン一覧</h1>
-        <h3>検索</h3>
-        <%= search_form_for @q2, url: restaurants_path do |f| %>
-          <%= f.label :shop_name, 'レストラン名' %>
-          <%= f.search_field :shop_name_cont %>
-          <%= f.submit '検索', class: "btn btn-primary btn-sm" %>
-          <%end%>
-      </div>
+    <div class="col-lg-9">
 
-
-      <div class="row">
-        <% @restaurants.each do |restaurant| %>
-        <div class="col-sm-6 col-md-4 mb-5">
-          <div class="card">
-            <%= link_to restaurant_path(restaurant.id) do %>
-            <%= image_tag restaurant.get_image(253,255), class: "cord-img-top" %>
-            <%end%>
+    <% @restaurants.each do |restaurant| %>
+      <div class="col-sm-6 col-lg-4 mb-5">
+        <div class="card h-100">
+          <%= link_to restaurant_path(restaurant.id) do %>
+            <%= image_tag restaurant.get_image(253, 255), class: "card-img-top" %>
+          <% end %>
           <div class="card-body">
             <h5 class="card-title">店名：<%= restaurant.shop_name %></h5>
             <p class="card-text">投稿者：<%= restaurant.user.name %></p>
@@ -33,10 +22,9 @@
             <p class="card-text">コメント数：<%= restaurant.comments.count %></p>
             <p class="card-text">タグ：<%= restaurant.tags.map(&:name).join(',') %></p>
           </div>
+        </div>
       </div>
-    </div>
-    <%end%>
-  </div>
+    <% end %>
   </div>
 </div>
 </div>
