@@ -1,4 +1,4 @@
-<div class="restaurantshow vh-100 d-flex align-items-center" id="restaurant.index">
+<div class="restaurantshow d-flex align-items-center" id="restaurant_show">
   <div class="container">
     <div class="row">
       <div class="col-lg-7 mx-auto text-center">
@@ -17,7 +17,7 @@
 
     <div class="col-md-9">
       <div class="card w-55 mx-auto mt-4 shadow-lg">
-          <%= image_tag @restaurant.get_image(600,600), class: "card-img-top" %>
+        <%= image_tag @restaurant.get_image(600,600), class: "card-img-top" %>
           <div class="card-body">
             <div class="row">
               <div class="col-lg-2">
@@ -26,7 +26,7 @@
               <div class="col-lg-10">
                 <p class="card-text">
                   <%= @restaurant.shop_name do %>
-                  <i class="fas fa-store"></i>
+                    <i class="fas fa-store"></i>
                   <% end %>
                 </p>
                 <p class="card-text">
@@ -43,39 +43,37 @@
                   <%end%>
                 </div>
                 <div class="row mx-auto mt-4 ">
-
-                    <span>
-                      <%= link_to user_path(@restaurant.user.id) do %>
-                        <%= @restaurant.user.name %>
+                  <span>
+                    <%= link_to user_path(@restaurant.user.id) do %>
+                      <%= @restaurant.user.name %>
+                    <%end%>
+                  </span>
+                    |
+                  <span>
+                    <%= @restaurant.created_at.strftime('%Y/%m/%d') %>
+                  </span>
+                    |
+                  <span>
+                    <% if @restaurant.favorited_by?(current_user) %>
+                      <p>
+                        <%= link_to restaurant_favorites_path(@restaurant), method: :delete do %>
+                        ❤<%= @restaurant.favorites.count %>いいね
                         <%end%>
-                    </span>
-                    |
-                    <span>
-                      <%= @restaurant.created_at.strftime('%Y/%m/%d') %>
-                    </span>
-                    |
-                    <span>
-                      <% if @restaurant.favorited_by?(current_user) %>
-                        <p>
-                          <%= link_to restaurant_favorites_path(@restaurant), method: :delete do %>
-                          ❤<%= @restaurant.favorites.count %>いいね
-                          <%end%>
-                        </p>
-                      <%else%>
-                        <p>
-                          <%= link_to restaurant_favorites_path(@restaurant), method: :post do %>
-                          ♡<%= @restaurant.favorites.count %>いいね
-                          <%end%>
-                        </p>
-                      <%end%>
-                    </span>
+                      </p>
+                    <%else%>
+                      <p>
+                        <%= link_to restaurant_favorites_path(@restaurant), method: :post do %>
+                        ♡<%= @restaurant.favorites.count %>いいね
+                        <%end%>
+                      </p>
+                    <%end%>
+                  </span>
                     
-                    <span><br>
-                        <% @restaurant_tags.each do |tag| %>
-                        <%= tag.name %>
-                        <%end%>
-                    </span>
-
+                  <span><br>
+                    <% @restaurant_tags.each do |tag| %>
+                      <%= tag.name %>
+                    <%end%>
+                  </span>
                 </div>
               </div>
             </div>
@@ -83,35 +81,67 @@
           <hr>
           <div class="comment card-text">
             <h5>コメント件数：<%= @restaurant.comments.count %></h5>
-                <div class="media border mb-3">
-                  <% @restaurant.comments.each do |comment| %>
-                    <p><%= image_tag comment.user.get_profile_image(80,80) %></p>
-                  <div class="media-body ml-4 p-3">
-                    <%= comment.user.name %>
-                    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-                      <%if comment.user == current_user %>
-                        <%= link_to "削除", restaurant_comment_path(comment.restaurant, comment), method: :delete %>
-                      <%end%>
-                    <%end%>
+            <div class="border mb-3">
+              <% @restaurant.comments.each do |comment| %>
+                <div class="card m-3">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <%= image_tag comment.user.get_profile_image(80,80), class: "my-3" %>
+                    </div>
+                    <div class="col-sm-9">
+                      <div class="my-3 mr-2">
+                        <div class="d-flex justify-content-between"><%= comment.user.name %><span><%= comment.created_at.strftime('%Y/%m/%d') %></span></div>
+                        <div class="d-flex"><%= comment.comment %></div>
+                        <% if comment.user == current_user %>
+                          <div class="d-flex justify-content-end">
+                            <%= link_to "削除", restaurant_comment_path(comment.restaurant, comment), method: :delete, class: "btn btn-danger" %>
+                          </div>
+                        <% end %>
+                      </div>
+                    </div>
                   </div>
                 </div>
+              <%end%>
             </div>
           </div>
           <hr>
           <div class="new-comment card-text">
             <div class="form-group">
               <%= form_with model: [@restaurant, @comment] do |f| %>
-              <%= f.text_area :comment, row: 8, placeholder: "ここにコメントしてください" %>
-              <%= f.submit "送信する", class: "btn btn-primary btn-sm" %>
+                <%= f.text_area :comment, row: 8, placeholder: "ここにコメントしてください" %>
+                <%= f.submit "送信する", class: "btn btn-primary btn-sm" %>
               <%end%>
             </div>
           </div>
         </div>
       </div>
-    </div>
   </div>
 
   <div class="text-center mt-4 mb-5">
     <%= link_to "戻る", restaurants_path, class: "btn btn-dark btn-md" %>
   </div>
 </div>
+
+
+<script>
+  window.addEventListener("scroll", (e) => {
+    var scroll_y = window.scrollY
+    if (scroll_y <= 270) {
+      $('#headerNav').removeClass('border-bottom')
+      $('#globalNav').removeClass('bg-white').addClass('bg-clear')
+      $('#globalNav').find('.list-unstyled>a').removeClass('text-dark').addClass('text-light')
+      $('#globalNavH1').removeClass('text-dark').addClass('text-light')
+      $('.restaurantshow').css('height', '350px')
+      $('#globalNav').find('.container-md').css('position', 'relative')
+      $('#restaurant_show').css('position', 'relative').css('top', '-90px')
+    } else {
+      $('headerNab').addClass('border-bottom')
+      $('#globalNav').removeClass('bg-clear').addClass('bg-white')
+      $('#globalNav').find('.list-unstyled>a').removeClass('text-light').addClass('text-dark')
+      $('#globalNavH1').removeClass('text-light').addClass('text-dark')
+      $('.restaurantshow').css('height', '270px')
+      $('#globalNav').find('.container-md').css('position', 'static')
+      $('#restaurant_show').css('position', 'static').css('top', '0px')
+    }
+  })
+</script>

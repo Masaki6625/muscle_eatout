@@ -4,22 +4,26 @@
 
 .userindex {
   background-image: image-url('friends2.jpg');
-  background-position: center;
+  background-position: bottom;
   background-size: cover;
   background-attachment: fixed;
   width: 100%;
-  height: 40%;
-  top: 0;
-  left: 0;
+  height: 300px;
 }
 
 .usershow {
   background-image: image-url('friends2.jpg');
-  background-position: center;
+  background-position: bottom;
   background-size: cover;
   background-attachment: fixed;
   width: 100%;
-  height: 40%;
-  top: 0;
-  left: 0;
+  height: 300px;
+}
+
+.cardindex::hover {
+   transform: scale(1.1, 1.1);
+}
+
+.cardshow::hover {
+  transform: scale(1.1, 1.1);
 }

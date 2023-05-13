@@ -18,3 +18,7 @@
 .ftco-navbar-light {
   background: #808080 !important;
 }
+
+.bg-clear {
+  background-color: rgba(255, 255, 255, 0)!important;
+}

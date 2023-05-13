@@ -1,4 +1,4 @@
-<div class="userindex vh-100 d-flex align-items-center" id="restaurant.index">
+<div class="userindex d-flex align-items-center" id="user_index">
   <div class="container">
     <div class="row">
       <div class="col-lg-7 mx-auto text-center">
@@ -18,7 +18,7 @@
       <div class= "row">
         <% @users.each do |user| %>
           <div class="col-sm-6 col-md-4 mb-4">
-            <div class="card mt-4 shadow-lg">
+            <div class="cardindex mt-4 shadow-lg">
               <%= link_to user_path(user.id) do %>
                 <%= image_tag user.get_profile_image(261,197) %>
               <%end%>
@@ -32,3 +32,26 @@
     </div>
   </div>
 </div>
+
+<script>
+  window.addEventListener("scroll", (e) => {
+    var scroll_y = window.scrollY
+    if (scroll_y <= 270) {
+      $('#headerNav').removeClass('border-bottom')
+      $('#globalNav').removeClass('bg-white').addClass('bg-clear')
+      $('#globalNav').find('.list-unstyled>a').removeClass('text-dark').addClass('text-light')
+      $('#globalNavH1').removeClass('text-dark').addClass('text-light')
+      $('.userindex').css('height', '350px')
+      $('#globalNav').find('.container-md').css('position', 'relative')
+      $('#user_index').css('position', 'relative').css('top', '-90px')
+    } else {
+      $('headerNab').addClass('border-bottom')
+      $('#globalNav').removeClass('bg-clear').addClass('bg-white')
+      $('#globalNav').find('.list-unstyled>a').removeClass('text-light').addClass('text-dark')
+      $('#globalNavH1').removeClass('text-light').addClass('text-dark')
+      $('.userindex').css('height', '270px')
+      $('#globalNav').find('.container-md').css('position', 'static')
+      $('#user_index').css('position', 'static').css('top', '0px')
+    }
+  })
+</script>

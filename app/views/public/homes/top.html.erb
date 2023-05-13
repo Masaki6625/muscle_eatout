@@ -54,3 +54,26 @@
     </div>
   </div>
 </div>
+
+<script>
+  window.addEventListener("scroll", (e) => {
+    var scroll_y = window.scrollY
+    if (scroll_y <= 680) {
+      $('#headerNav').removeClass('border-bottom')
+      $('#globalNav').removeClass('bg-white').addClass('bg-clear')
+      $('#globalNav').find('.list-unstyled>a').removeClass('text-dark').addClass('text-light')
+      $('#globalNavH1').removeClass('text-dark').addClass('text-light')
+      $('.hero').css('height', '350px')
+      $('#globalNav').find('.container-md').css('position', 'relative')
+      $('#home').css('position', 'relative').css('top', '-90px')
+    } else {
+      $('headerNab').addClass('border-bottom')
+      $('#globalNav').removeClass('bg-clear').addClass('bg-white')
+      $('#globalNav').find('.list-unstyled>a').removeClass('text-light').addClass('text-dark')
+      $('#globalNavH1').removeClass('text-light').addClass('text-dark')
+      $('.hero').css('height', '270px')
+      $('#globalNav').find('.container-md').css('position', 'static')
+      $('#home').css('position', 'static').css('top', '0px')
+    }
+  })
+</script>
