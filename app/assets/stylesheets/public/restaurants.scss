@@ -1,3 +1,25 @@
 // Place all the styles related to the public/restaurants controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.restaurantindex {
+  background-image: image-url('restaurant2.jpg');
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  width: 100%;
+  height: 40%;
+  top: 0;
+  left: 0;
+}
+
+.restaurantshow {
+  background-image: image-url('restaurant2.jpg');
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  width: 100%;
+  height: 40%;
+  top: 0;
+  left: 0;
+}

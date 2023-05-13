@@ -3,14 +3,14 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-7 mx-auto text-center">
-        <h1>Muscle Eatout</h1>
-        <p>
+        <h1 class="text-white" style=="font-family: 'Sacrament', cursive;">Muscle Eatout</h1>
+        <p class="text-white">
           おいしいをもっと楽しく、<br>
           もっと自分らしく。
         </p>
         <%= link_to "Sign up", new_user_registration_path, class:"btn btn-success btn-sm" %>
         |
-        <%= link_to "Log in", new_user_session_path , class:"btn btn-info btn-sm" %>
+        <%= link_to "Log in", new_user_session_path , class:"btn btn-primary btn-sm" %>
         |
         <%= link_to 'ゲストの方', guest_user_path, method: :post, class: "btn btn-secondary btn-sm" %>
       </div>
@@ -20,7 +20,7 @@
 
 
 <div class="container border-bottom mt-5 mb-5">
-  <h2>伝えたいこと。</h2>
+  <h2>About</h2>
   <div class="row">
     <div class="col-lg-6">
       <%= image_tag  'eat1.jpg'%>
@@ -30,7 +30,7 @@
       <p class="text-center mt-5">
         おいしいをもっと気軽に、もっと自分らしく<br>
         自分を磨く全ての人が、外食でもっと笑顔になってもらいたい。<br>
-        自分らしくおいしいを届けたい。
+        そんな想いから考えました。
       </p>
     </div>
   </div>

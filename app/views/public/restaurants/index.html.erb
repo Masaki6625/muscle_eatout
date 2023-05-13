@@ -1,3 +1,14 @@
+<div class="restaurantindex vh-100 d-flex align-items-center" id="restaurant.index">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 mx-auto text-center">
+        <h1 class="text-white">レストラン投稿一覧</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div>
   <%= flash[:notice] %>
 </div>
@@ -8,23 +19,47 @@
       <%= render 'public/restaurants/tag_search', tags: @tag_list %>
     </div>
     <div class="col-lg-9">
-
-    <% @restaurants.each do |restaurant| %>
-      <div class="col-sm-6 col-lg-4 mb-5">
-        <div class="card h-100">
-          <%= link_to restaurant_path(restaurant.id) do %>
-            <%= image_tag restaurant.get_image(253, 255), class: "card-img-top" %>
-          <% end %>
-          <div class="card-body">
-            <h5 class="card-title">店名：<%= restaurant.shop_name %></h5>
-            <p class="card-text">投稿者：<%= restaurant.user.name %></p>
-            <p class="card-text">いいね数：<%= restaurant.favorites.count %></p>
-            <p class="card-text">コメント数：<%= restaurant.comments.count %></p>
-            <p class="card-text">タグ：<%= restaurant.tags.map(&:name).join(',') %></p>
+        <h3 class="mt-3">検索</h3>
+        <%= search_form_for @q2, url: restaurants_path do |f| %>
+          <%= f.label :shop_name, 'レストラン名' %>
+          <%= f.search_field :shop_name_cont %>
+          <%= f.submit '検索', class: "btn btn-primary btn-sm" %>
+        <%end%>
+      <div class="row">
+        <% @restaurants.each do |restaurant| %>
+          <div class="col-sm-6 col-lg-4 mb-5">
+            <div class="card mx-auto mt-4 shadow-lg">
+              <%= link_to restaurant_path(restaurant.id) do %>
+                <%= image_tag restaurant.get_image(253, 255), class: "card-img-top" %>
+              <% end %>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <%= image_tag restaurant.user.get_profile_image(60,60), class: "mt-3 rounded-circle" %>
+                  </div>
+                  <div class="col-lg-8">
+                    <p class="card-title"><%= restaurant.shop_name %></h5>
+                    <p class="card-text"><%= restaurant.user.name %></p>
+                    <span>
+                      ❤️<%= restaurant.favorites.count %>
+                    </span>
+                    |
+                    <span>
+                      <%= restaurant.comments.count %>
+                    </span>
+                    
+                    <span><br>
+                      <%= restaurant.tags.map(&:name).join(',') do %>
+                      <i class="fas fa-tag"></i>
+                      <%end%>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
   </div>
-</div>
 </div>
