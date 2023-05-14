@@ -3,7 +3,8 @@ before_action :authenticate_user!
 #before_action :set_user, only: [:favorites]
 
   def index
-    @users = User.where(is_deleted: false)
+
+    @users = User.where(is_deleted: false).page(params[:page])
     @user = current_user
   end
 
@@ -34,7 +35,7 @@ before_action :authenticate_user!
     flash[:notice] = "退会処理を実行しました"
     redirect_to root_path
   end
-  
+
   def favorites
     @user = User.find(params[:id])
     favorites = Favorite.where(user_id: @user.id).pluck(:restaurant_id)

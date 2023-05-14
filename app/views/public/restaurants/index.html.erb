@@ -42,14 +42,29 @@
                   <div class="col-lg-8">
                     <p class="card-title"><%= restaurant.shop_name %></h5>
                     <p class="card-text"><%= restaurant.user.name %></p>
-                    <span>
-                      ❤️<%= restaurant.favorites.count %>
+                    <span class="card-text">
+                      <script>
+                        let elem = document.querySelector('#star');
+                        elem.innerHTML = ""
+                        let opt = {
+                            starOn: "<%= asset_path('star-on.png') %>",
+                            starOff: "<%= asset_path('star-off.png') %>",
+                            starHalf: "<%= asset_path('star-half.png') %>",
+                            //scoreName: 'restraunt[star]',
+                            score: <%= restaurant.star %>,
+                            readOnly: true
+                        };
+                        raty(elem, opt);
+                      </script>
+                    </span>
+                    <span id="favorite_btn_<%= restaurant.id %>">
+
+                        <%= render 'public/restaurants/favorite', restaurant: restaurant %>
                     </span>
                     |
                     <span>
                       <%= restaurant.comments.count %>
                     </span>
-
                     <span><br>
 
                     </span>
@@ -64,6 +79,9 @@
             </div>
           </div>
         <% end %>
+        <div class="text-center">
+        <%= paginate @restaurants %>
+        </div>
       </div>
     </div>
   </div>

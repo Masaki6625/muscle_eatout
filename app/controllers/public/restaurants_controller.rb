@@ -17,7 +17,7 @@ class Public::RestaurantsController < ApplicationController
 
   def index
     @q2 = Restaurant.ransack(params[:q])
-    @restaurants = @q2.result(distinct: true)
+    @restaurants = @q2.result(distinct: true).page(params[:page]).per(6)
     @q = Tag.ransack(params[:q])
     @tag_list = @q.result(distinct: true)
     if params[:tag_id].present?
@@ -29,6 +29,11 @@ class Public::RestaurantsController < ApplicationController
       restrant_tags = RestaurantTag.where(tag_id: @tag_list.pluck(:id))
       @restaurants = Restaurant.where(id: restrant_tags.pluck(:restaurant_id))
       # pp @tag_list,restrant_tags, @restaurants
+       @restaurant = Restaurant.includes(:favorited_users).
+      sort {|a,b|
+        b.favorited_users.includes(:favorites).where(created_at: from...to).size <=>
+        a.favorited_users.includes(:favorites).where(created_at: from...to).size
+      }
     end
   end
 
@@ -69,6 +74,6 @@ class Public::RestaurantsController < ApplicationController
   private
 
     def restaurant_params
-      params.require(:restaurant).permit(:shop_name, :introduction, :image)
+      params.require(:restaurant).permit(:shop_name, :introduction, :image, :star)
     end
 end

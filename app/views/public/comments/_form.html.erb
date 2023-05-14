@@ -1,0 +1,6 @@
+<div class="form-group">
+  <%= form_with model: [restaurant, comment], local: false do |f| %>
+    <%= f.text_area :comment, row: 8, placeholder: "ここにコメントしてください" %>
+    <%= f.submit "送信する", class: "btn btn-primary btn-sm" %>
+  <%end%>
+</div>
