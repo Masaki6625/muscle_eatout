@@ -41,6 +41,11 @@
       raty(elem, opt);
     </script>
 
+    <div class="form-group">
+      <%= f.label :address, '場所' %>
+      <%= f.text_field :address, class: 'form-control' %>
+    </div>
+
     <div class="text-center mb-5">
     <%= f.submit '投稿する', class: "btn btn-success btn-lg" %>
 

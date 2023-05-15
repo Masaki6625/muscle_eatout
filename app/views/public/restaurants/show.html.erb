@@ -82,6 +82,23 @@
             </div>
           </div>
           <hr>
+          <div class="map">
+            <div id="map">
+            </div>
+          </div>
+
+          <div type="text/javascript">
+            <script>
+              function initMap(){
+                let map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: <%= @restaurant.latitude %>, lng: <%= @restaurant.longitude %> },
+                zoom: 15
+                });
+              }
+            </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+          </div>
+          <hr>
           <div class="comment card-text">
            <%= render 'public/comments/comments', restaurant: @restaurant %>
           </div>
