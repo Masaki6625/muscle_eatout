@@ -22,7 +22,7 @@ class Public::RestaurantsController < ApplicationController
     @tag_list = @q.result(distinct: true)
     if params[:tag_id].present?
       @tag = Tag.find(params[:tag_id])
-      @restaurants = @tag.restaurants
+      @restaurants = @tag.restaurants.page(params[:page]).per(6)
     end
 
     if params[:q].present? && params[:q][:name_cont].present?
@@ -74,6 +74,6 @@ class Public::RestaurantsController < ApplicationController
   private
 
     def restaurant_params
-      params.require(:restaurant).permit(:shop_name, :introduction, :image, :star)
+      params.require(:restaurant).permit(:shop_name, :introduction, :image, :star, :address)
     end
 end

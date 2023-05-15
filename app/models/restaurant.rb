@@ -7,16 +7,20 @@ class Restaurant < ApplicationRecord
   has_many :restaurant_tags, dependent: :destroy
   has_many :tags, through: :restaurant_tags
 
+
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
+
   #検索機能で設定したransackの渡すデータを設定している。
   def self.ransackable_attributes(auth_object = nil)
     ["created_at", "id", "introduction", "shop_name", "updated_at", "user_id"]
   end
-  
+
   #いいね機能でユーザーがいいねをしているか調べている。
   def favorited_by?(user)
     user.present? && favorites.exists?(user_id: user.id)
   end
-  
+
   def self.ransackable_associations(auth_object = nil)
     ["tags"]
   end

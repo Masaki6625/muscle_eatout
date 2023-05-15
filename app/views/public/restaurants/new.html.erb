@@ -27,18 +27,14 @@
     <div class="ml-2 p-2" id="star">
 　　</div>
 　　</div>
-    <script>;
-      let elem = document.querySelector('#star');
-      elem.innerHTML = ""
-      let opt = {
-          starOn: "<%= asset_path('star-on.png') %>",
-          starOff: "<%= asset_path('star-off.png') %>",
-          starHalf: "<%= asset_path('star-half.png') %>",
-          scoreName: 'restraunt[star]',
-          //score: <%#= restraunt.star %>,
-          //readOnly: true
-      };
-      raty(elem, opt);
+    <script>
+      document.querySelector('#star').innerHTML = '';
+      raty(document.querySelector('#star'), {
+      starOn: "<%= asset_path('star-on.png') %>",
+      starOff: "<%= asset_path('star-off.png') %>",
+      starHalf: "<%= asset_path('star-half.png') %>",
+      scoreName: 'restaurant[star]',
+    });
     </script>
 
     <div class="form-group">

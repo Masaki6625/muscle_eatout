@@ -13,7 +13,7 @@
   <%= flash[:notice] %>
 </div>
 
-<div class="container px-6">
+<div class="container" style="margin-bottom: 100px;">
   <div class="row">
     <div class="col-lg-3 h-100">
       <%= render 'public/restaurants/tag_search', tags: @tag_list %>
@@ -43,18 +43,16 @@
                     <p class="card-title"><%= restaurant.shop_name %></h5>
                     <p class="card-text"><%= restaurant.user.name %></p>
                     <span class="card-text">
+                      <div id="star_<%= restaurant.id %>"></div>
                       <script>
-                        let elem = document.querySelector('#star');
-                        elem.innerHTML = ""
-                        let opt = {
+                        document.querySelector('#star_<%= restaurant.id %>').innerHTML = '';
+                        raty(document.querySelector('#star_<%= restaurant.id %>'), {
                             starOn: "<%= asset_path('star-on.png') %>",
                             starOff: "<%= asset_path('star-off.png') %>",
                             starHalf: "<%= asset_path('star-half.png') %>",
-                            //scoreName: 'restraunt[star]',
-                            score: <%= restaurant.star %>,
+                            score: <%= restaurant.star ||= 0 %>,
                             readOnly: true
-                        };
-                        raty(elem, opt);
+                          });
                       </script>
                     </span>
                     <span id="favorite_btn_<%= restaurant.id %>">
