@@ -6,6 +6,7 @@ class Restaurant < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :restaurant_tags, dependent: :destroy
   has_many :tags, through: :restaurant_tags
+  has_many :favorited_users, through: :favorites, source: :user
 
 
   geocoded_by :address

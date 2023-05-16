@@ -10,7 +10,7 @@
 <div class="container text-center">
   <div class="row">
     <div class="col-lg-6 mt-2 mb-5">
-      <%= link_to "退会する", unsubscribe_path, method: :patch, data: { confilm: "本当に退会しますか？"}, class: "btn btn-danger btn-lg" %>
+      <%= link_to "退会する", unsubscribe_path, method: :patch, data: { confilm: "本当に退会しますか？"}, class: "btn btn-danger btn-lg", "data-confirm" => "本当に退会しますか？" %>
     </div>
     <div class="col-lg-5 mt-2 mb-5">
       <%= link_to "キャンセル", edit_user_path(current_user), class: "btn btn-primary btn-lg" %>

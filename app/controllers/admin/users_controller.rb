@@ -23,6 +23,10 @@ class Admin::UsersController < ApplicationController
     #redirect_to root_path unless current_user.admin?
   #end
 
+  #d#ef admin?
+    #if current_user == admin
+    #end
+  #end
   #def set_restaurant
     #@restaurant = Restaurant.find(params[:id])
   #end

@@ -50,7 +50,7 @@
                 <div class="row">
                   <% if @restaurant.user == current_user %>
                     <div class="col-md-5">
-                      <%= link_to "削除する", restaurant_path(@restaurant), method: :delete, class: "btn btn-danger btn-md" %>
+                      <%= link_to "削除する", restaurant_path(@restaurant), method: :delete, class: "btn btn-danger btn-md", "data-confirm" => "本当に削除しますか？" %>
                     </div>
                     <div class="col-md-5">
                       <%= link_to "変更する", edit_restaurant_path(@restaurant.id), class: "btn btn-success btn-md" %>

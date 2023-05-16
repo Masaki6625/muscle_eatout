@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     #root :to => "public/homes#top"
     resources :restaurants, only: [:index, :show]
     resources :users, only: [:index, :show, :destroy]
-    resource :comments, only: [:create, :destory]
+    resources :comments, only: [:create, :destroy]
   end
 
   scope module: :public do
@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     get :favorites
     end
   end
-    resource :comments, only: [:create, :destory]
+    resource :comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destory]
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'

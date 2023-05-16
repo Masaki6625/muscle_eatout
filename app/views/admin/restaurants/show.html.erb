@@ -14,10 +14,9 @@
         <%= @restaurant.shop_name %>
       </td>
       <td>
-        <% @restaurant.comments.each do |comment| %>
-        <%= comment.comment %><br>
-        <%= link_to "削除", restaurant_comment_path(comment.restaurant, comment), method: :delete %>
-        <%end%>
+        <div class="comment card-text">
+          <%= render 'public/comments/comments', restaurant: @restaurant %>
+        </div>
       </td>
     </tr>
   </table>

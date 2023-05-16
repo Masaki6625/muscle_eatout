@@ -17,24 +17,24 @@ class Public::RestaurantsController < ApplicationController
 
   def index
     @q2 = Restaurant.ransack(params[:q])
-    @restaurants = @q2.result(distinct: true).page(params[:page]).per(6)
+    @restaurants = @q2.result(distinct: true)
     @q = Tag.ransack(params[:q])
     @tag_list = @q.result(distinct: true)
     if params[:tag_id].present?
       @tag = Tag.find(params[:tag_id])
-      @restaurants = @tag.restaurants.page(params[:page]).per(6)
+      @restaurants = @tag.restaurants
     end
-
     if params[:q].present? && params[:q][:name_cont].present?
       restrant_tags = RestaurantTag.where(tag_id: @tag_list.pluck(:id))
       @restaurants = Restaurant.where(id: restrant_tags.pluck(:restaurant_id))
       # pp @tag_list,restrant_tags, @restaurants
-       @restaurant = Restaurant.includes(:favorited_users).
-      sort {|a,b|
-        b.favorited_users.includes(:favorites).where(created_at: from...to).size <=>
-        a.favorited_users.includes(:favorites).where(created_at: from...to).size
-      }
     end
+    @restaurants = @restaurants.includes(:favorites).
+      sort {|a,b|
+        b.favorites.select(:created_at).order(created_at: :desc).first(1) <=>
+        a.favorites.select(:created_at).order(created_at: :desc).first(1)
+      }
+    @restaurants = Kaminari.paginate_array(@restaurants).page(params[:page]).per(6)
   end
 
   def show
