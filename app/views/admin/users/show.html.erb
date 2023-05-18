@@ -1,0 +1,21 @@
+<h1><%= @user.name %>　の詳細</h1>
+<div>
+  <table class="table">
+    <tr>
+      <th>画像</th>
+      <th>店名</th>
+      <th>コメント数</th>
+    </tr>
+      <% @restaurant.each do |restaurant| %>
+    <tr>
+      <td><%= image_tag restaurant.get_image(100,100) %></td>
+      <td>
+         <%= link_to admin_restaurant_path(restaurant.id) do %>
+        <%= restaurant.shop_name %>
+        <%end%>
+      </td>
+      <td><%= restaurant.comments.count %></td>
+    </tr>
+    <%end%>
+  </table>
+</div>

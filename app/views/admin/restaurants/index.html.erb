@@ -1,0 +1,29 @@
+<h1>投稿されたレストラン情報一覧</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <tr>
+          <td>画像</td>
+          <td>店名</td>
+          <td>コメント</td>
+        </tr>
+        <% @restaurants.each do |restaurant| %>
+        <tr>
+          <td>
+            <%= image_tag restaurant.get_image(100,100) %>
+          </td>
+          <td>
+            <%= link_to admin_restaurant_path(restaurant.id) do %>
+            <%= restaurant.shop_name %>
+            <%end%>
+          </td>
+          <td>
+            <%= restaurant.comments.count %>
+          </td>
+        </tr>
+        <%end%>
+      </table>
+    </div>
+  </div>
+</div>

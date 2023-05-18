@@ -1,0 +1,23 @@
+<h1><%= @restaurant.shop_name %>　の詳細</h1>
+<div>
+  <table class="table">
+    <tr>
+      <th>画像</th>
+      <th>店名</th>
+      <th>コメント</th>
+    </tr>
+    <tr>
+      <td>
+        <%= image_tag @restaurant.get_image(100,100) %>
+      </td>
+      <td>
+        <%= @restaurant.shop_name %>
+      </td>
+      <td>
+        <div class="comment card-text">
+          <%= render 'public/comments/comments', restaurant: @restaurant %>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>

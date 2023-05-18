@@ -1,0 +1,19 @@
+<div class="text-center mt-5">
+  <h2>退会のお手続き</h2>
+  <p>
+    退会お手続きをされますと、会員でのサービスがご利用いただけなくなります。<br>
+    再度ご利用いただく場合は、新規登録のお手続きが必要になります。<br>
+    本当に退会してよろしいですか?
+  </p>
+</div>
+
+<div class="container text-center">
+  <div class="row">
+    <div class="col-lg-6 mt-2 mb-5">
+      <%= link_to "退会する", unsubscribe_path, method: :patch, data: { confilm: "本当に退会しますか？"}, class: "btn btn-danger btn-lg", "data-confirm" => "本当に退会しますか？" %>
+    </div>
+    <div class="col-lg-5 mt-2 mb-5">
+      <%= link_to "キャンセル", edit_user_path(current_user), class: "btn btn-primary btn-lg" %>
+    </div>
+  </div>
+</div>

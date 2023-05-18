@@ -10,6 +10,15 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require public/homes
  *= require_tree .
  *= require_self
  */
+
+.ftco-navbar-light {
+  background: #808080 !important;
+}
+
+.bg-clear {
+  background-color: rgba(255, 255, 255, 0)!important;
+}

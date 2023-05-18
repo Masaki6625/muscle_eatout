@@ -1,0 +1,79 @@
+<!--先頭の部分-->
+<div class="hero vh-100 d-flex align-items-center" id="home">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 mx-auto text-center">
+        <h1 class="text-white" style=="font-family: 'Sacrament', cursive;">Muscle Eatout</h1>
+        <p class="text-white">
+          おいしいをもっと楽しく、<br>
+          もっと自分らしく。
+        </p>
+        <%= link_to "Sign up", new_user_registration_path, class:"btn btn-success btn-sm" %>
+        |
+        <%= link_to "Log in", new_user_session_path , class:"btn btn-primary btn-sm" %>
+        |
+        <%= link_to 'ゲストの方', guest_user_path, method: :post, class: "btn btn-secondary btn-sm" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container border-bottom mt-5 mb-5">
+  <h2>About</h2>
+  <div class="row">
+    <div class="col-lg-6">
+      <%= image_tag  'eat1.jpg'%>
+    </div>
+    <div class="col-lg-6">
+      <h4 class="text-center mt-5">Muscle Eatoutが届けたい想い。</h4>
+      <p class="text-center mt-5">
+        おいしいをもっと気軽に、もっと自分らしく<br>
+        自分を磨く全ての人が、外食でもっと笑顔になってもらいたい。<br>
+        そんな想いから考えました。
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="container border-bottom mb-5">
+  <h2 class="text-right mr-4">僕ができること。</h2>
+  <div class="row">
+    <div class="col-lg-6">
+      <h4 class="text-center mt-5">DMM Webcampで学んだこと。</h4>
+      <p class="text-center  mt-5">
+        HTML,CSSの基本を学び、<br>
+        Ruby on Railsを使ったWebアプリケーションの<br>
+        基本の作り方を学びました。<br>
+        またAIを駆使したアプリの作り方も<br>
+        学習しました。
+      </p>
+    </div>
+    <div class="col-lg-5 ml-5 mt-3">
+      <%= image_tag 'rubyimage.jpg', size: '454x340' %>
+    </div>
+  </div>
+</div>
+
+<script>
+  window.addEventListener("scroll", (e) => {
+    var scroll_y = window.scrollY
+    if (scroll_y <= 680) {
+      $('#headerNav').removeClass('border-bottom')
+      $('#globalNav').removeClass('bg-white').addClass('bg-clear')
+      $('#globalNav').find('.list-unstyled>a').removeClass('text-dark').addClass('text-light')
+      $('#globalNavH1').removeClass('text-dark').addClass('text-light')
+      $('.hero').css('height', '350px')
+      $('#globalNav').find('.container-md').css('position', 'relative')
+      $('#home').css('position', 'relative').css('top', '-90px')
+    } else {
+      $('headerNab').addClass('border-bottom')
+      $('#globalNav').removeClass('bg-clear').addClass('bg-white')
+      $('#globalNav').find('.list-unstyled>a').removeClass('text-light').addClass('text-dark')
+      $('#globalNavH1').removeClass('text-light').addClass('text-dark')
+      $('.hero').css('height', '270px')
+      $('#globalNav').find('.container-md').css('position', 'static')
+      $('#home').css('position', 'static').css('top', '0px')
+    }
+  })
+</script>
