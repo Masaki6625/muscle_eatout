@@ -8,63 +8,63 @@
   </div>
 </div>
 
-
-<div class= "container">
-  <div class='row'>
-    <div class="col-md-3">
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 col-md-3">
       <!--ユーザーの情報-->
       <%= render 'public/users/userinfo', user: @user %>
     </div>
-    <div>
-      <p class="mt-5 ml-4"><%=link_to"お気に入り記事",favorites_user_path(@user) %></p>
-
+    <div class="col-md-9">
+      <p class="mt-5 ml-4"><%= link_to "お気に入り記事", favorites_user_path(@user) %></p>
+      
       <!--ユーザーの投稿した店舗一覧-->
-      <div class= "row">
+      <div class="row">
         <% @restaurant.each do |restaurant| %>
-         <div class="col-sm-6 col-md-9 ml-5 mb-4">
-            <div class="cardshow mt-4 shadow-lg">
+          <div class="col-sm-6 col-md-6 col-lg-4 mb-4">
+            <div class="card mt-4 shadow-lg w-100">
               <%= link_to restaurant_path(restaurant.id) do %>
-                <%= image_tag restaurant.get_image(257,226), class: "cord-img-top" %>
-              <%end%>
+                <%= image_tag restaurant.get_image(257, 226), class: "cord-img-top", style: "width:100%" %>
+              <% end %>
               <div class="card-body">
+                <%= image_tag restaurant.user.get_profile_image(50, 50), class: "mt-3 rounded-circle" %>
                 <div class="row">
-                  <div class="col-lg-4">
-                    <%= image_tag restaurant.user.get_profile_image(60,60), class: "mt-3 rounded-circle" %>
-                  </div>
-                  <div class="col-lg-8">
+                  <!--<div class="col-lg-4">-->
+                    <%#= image_tag restaurant.user.get_profile_image(60, 60), class: "mt-3 rounded-circle" %>
+                  <!--</div>-->
+                  <div class="col-12">
                     <h6 class="card-title">店名：<%= restaurant.shop_name %></h6>
                     <p class="cart-text">投稿日：<%= restaurant.created_at.strftime('%Y/%m/%d') %></p>
                   </div>
                 </div>
               </div>
             </div>
-          <%end%>
-        </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
 
-
+<!--ヘッダー部分の動きをつけています-->
 <script>
   window.addEventListener("scroll", (e) => {
-    var scroll_y = window.scrollY
+    var scroll_y = window.scrollY;
     if (scroll_y <= 270) {
-      $('#headerNav').removeClass('border-bottom')
-      $('#globalNav').removeClass('bg-white').addClass('bg-clear')
-      $('#globalNav').find('.list-unstyled>a').removeClass('text-dark').addClass('text-light')
-      $('#globalNavH1').removeClass('text-dark').addClass('text-light')
-      $('.usershow').css('height', '350px')
-      $('#globalNav').find('.container-md').css('position', 'relative')
-      $('#user_show').css('position', 'relative').css('top', '-90px')
+      $('#headerNav').removeClass('border-bottom');
+      $('#globalNav').removeClass('bg-white').addClass('bg-clear');
+      $('#globalNav').find('.list-unstyled>a').removeClass('text-dark').addClass('text-light');
+      $('#globalNavH1').removeClass('text-dark').addClass('text-light');
+      $('.usershow').css('height', '350px');
+      $('#globalNav').find('.container-md').css('position', 'relative');
+      $('#user_show').css('position', 'relative').css('top', '-90px');
     } else {
-      $('headerNab').addClass('border-bottom')
-      $('#globalNav').removeClass('bg-clear').addClass('bg-white')
-      $('#globalNav').find('.list-unstyled>a').removeClass('text-light').addClass('text-dark')
-      $('#globalNavH1').removeClass('text-light').addClass('text-dark')
-      $('.usershow').css('height', '270px')
-      $('#globalNav').find('.container-md').css('position', 'static')
-      $('#user_show').css('position', 'static').css('top', '0px')
+      $('headerNab').addClass('border-bottom');
+      $('#globalNav').removeClass('bg-clear').addClass('bg-white');
+      $('#globalNav').find('.list-unstyled>a').removeClass('text-light').addClass('text-dark');
+      $('#globalNavH1').removeClass('text-light').addClass('text-dark');
+      $('.usershow').css('height', '270px');
+      $('#globalNav').find('.container-md').css('position', 'static');
+      $('#user_show').css('position', 'static').css('top', '0px');
     }
-  })
+  });
 </script>

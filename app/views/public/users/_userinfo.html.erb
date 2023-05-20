@@ -13,49 +13,49 @@
     <h1 class="text-left border-bottom" style="font-family: 'Sacrament', cursive;">About me</h1>
       <p><%= image_tag user.get_profile_image(230,230) %></p>
       <table class= "table table-striped mt-5">
-          <thead>
-              <tr>
-                  <th>name</th>
-                  <th><%= user.name %></th>
-              </tr>
-              <tr>
-                  <th>introduction</th>
-                  <th><%= user.user_introduction %></th>
-              </tr>
-              <tr>
-                <td>followers</td>
-                <td>
-                  <%= link_to user.followers.count, followers_path(user_id: user.id) %>
-                </td>
-              </tr>
-              <tr>
-                <td>followed</td>
-                <td>
-                  <%= link_to user.followings.count, followings_path(user_id: user.id) %>
-                </td>
-              </tr>
-              <tr>
-                  <td>
-                    <% unless user == current_user %>
-                      <%if current_user.following?(user) %>
-                      <%= link_to "フォローを外す", relationships_path(user_id: user.id),method: :delete %>
-                      <%else%>
-                      <%= link_to "フォローする", relationships_path(user_id: user.id), method: :post %>
-                      <%end%>
-                    <%end%>
-                  </td>
-              </tr>
-              <tr>
-                <td>
-                  <% if current_user != user && current_user.followings.include?(user) && user.followings.include?(current_user) %>
-                    <%= link_to 'chatを始める', chat_path(user.id), class: "ml-3" %>
-                  <%end%>
-                </td>
-              </tr>
-          </thead>
-      </table>
-      <%= link_to edit_user_path(user.id), class: "btn btn-outline-secondary btn-block " do  %>
+        <thead>
+          <tr>
+            <th>name</th>
+            <td><%= user.name %></td>
+          </tr>
+        </thead>
+        <tbory>
+          <tr>
+            <th>introduction</th>
+            <td><%= user.user_introduction %></td>
+          </tr>
+          <tr>
+            <td>followers</td>
+            <td>
+              <%= link_to user.followers.count, followers_path(user_id: user.id) %>
+            </td>
+          </tr>
+          <tr>
+            <td>followed</td>
+            <td>
+              <%= link_to user.followings.count, followings_path(user_id: user.id) %>
+            </td>
+          </tr>
+          <% unless user == current_user %>
+            <tr>
+              <td>
+                <% if current_user.following?(user) %>
+                  <%= link_to "unfollow", relationships_path(user_id: user.id),method: :delete, class: "btn btn-danger" %>
+                <% else %>
+                  <%= link_to "follow", relationships_path(user_id: user.id), method: :post, class: "btn btn-primary" %>
+                <% end %>
+              </td>
+              <td>
+                <% if current_user != user && current_user.followings.include?(user) && user.followings.include?(current_user) %>
+                  <%= link_to 'chat', chat_path(user.id), class: "ml-3 btn btn-primary" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+      </tbody>
+    </table>
+    <%= link_to edit_user_path(user.id), class: "btn btn-outline-secondary btn-block " do  %>
       <i class="fas fa-user-cog"></i>
-      <% end %>
-</div>
+    <% end %>
+  </div>
 </div>

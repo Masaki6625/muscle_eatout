@@ -1,22 +1,42 @@
-<h1 id="room" data-room="<%= @room.id %>" date-user="<%= current_user.id %>"> 
-<%= @user.name %> さんとのチャット
-</h1>
+<div class="container mb-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-8">
+      <div class="card w-55 mx-auto mt-4 shadow-lg" style="border-radius: 15px;">
+        <div class="card-deader">
+          <h1 class="text-center border-bottom mt-4 pb-4" id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>">
+            <%= @user.name %> さんとのチャット
+          </h1>
+        </div>
 
-<div class="message" style="width: 400px;">
-  <% @chats.each do |chat| %>
-    <% if chat.user_id == current_user.id %>
-      <p style = "text-align: reght;"><%= chat.message %></p>
-    <%else%>
-      <p style="text-align: lefe;"><%= chat.message %></p>
-      <%end%>
-    <%end%>
+        <div class="message card-body">
+          <% @chats.each do |chat| %>
+            <% if chat.user_id == current_user.id %>
+              <div class="d-flex flex-row justify-content-start mb-4">
+                <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237, .2);">
+                  <p style="justify-content-start;"><%= chat.message %></p>
+                </div>
+              </div>
+            <% else %>
+              <div class="d-flex flex-row justify-content-end mb-4">
+                <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
+                  <p style="justify-content-end;"><%= chat.message %></p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="errors">
+          <%#= render "public/layouts/errors", obj: @chat %>
+        </div>
+
+        <div class="form-outline">
+          <%= form_with model: @chat, data: {remote: true} do |f| %>
+            <%= f.text_field :message, placeholder: "メッセージを入力してください。", class: "form-control" %>
+            <%= f.hidden_field :room_id %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-<div class="errors">
-  <%#= render "public/layouts/errors", obj: @chat %>
-</div>
-
-<%= form_with model: @chat, data: {remote: true} do |f| %>
-  <%= f.text_field :message %>
-  <%= f.hidden_field :room_id %>
-<%end%>

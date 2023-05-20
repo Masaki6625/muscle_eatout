@@ -20,6 +20,15 @@
   height: 300px;
 }
 
+.restaurant_favorite {
+  background-image: image-url('restaurant2.jpg');
+  background-position: bottom;
+  background-size: cover;
+  background-attachment: fixed;
+  width: 100%;
+  height: 300px;
+}
+
 .cardindex:hover {
   transform: scale(1.1, 1.1);
 }

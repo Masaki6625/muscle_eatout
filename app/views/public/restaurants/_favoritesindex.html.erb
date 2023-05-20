@@ -1,11 +1,16 @@
 <div>
   <div>
     <h1>いいねしたレストラン一覧</h1>
-
-    <%= link_to image_tag restaurant.get_image(253,255), class: "card-img-top" %>
-    <%= restaurant.shop_name %>
-    <%= restaurant.user.name %>
-    <%= restaurant.favrites.count %>
-    <%= restaurant.comments.count %>
+    <div class="caed shadow-lg">
+      <div class="cart-text">
+        <%= link_to image_tag restaurant.get_image(253,255), class: "card-img-top" %>
+      </div>
+      <div class="card-body">
+        <%= restaurant.shop_name %>
+        <%= restaurant.user.name %>
+        <%= restaurant.favorites.count %>
+        <%= restaurant.comments.count %>
+      </div>
+    </div>
   </div>
 </div>
