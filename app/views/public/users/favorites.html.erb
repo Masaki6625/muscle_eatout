@@ -21,7 +21,9 @@
               <%= restaurant.shop_name %>
             </div>
             <div class="mt-3">
-              <%= restaurant.user.name %>
+              <%= link_to user_path(restaurant.user.id) do %>
+                <%= restaurant.user.name %>
+              <% end %>
             </div>
             <span class="mt-2">
               いいね数: <%= restaurant.favorites.count %>
