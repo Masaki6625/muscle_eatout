@@ -11,6 +11,7 @@ class Restaurant < ApplicationRecord
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
+  after_destroy :destroy_empty_tag
 
   #検索機能で設定したransackの渡すデータを設定している。
   def self.ransackable_attributes(auth_object = nil)
@@ -60,5 +61,7 @@ class Restaurant < ApplicationRecord
 
   end
 
-
+  def destroy_empty_tag
+    Tag.where.missing(:restaurant_tags).destroy_all
+  end
 end

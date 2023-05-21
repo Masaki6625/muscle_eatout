@@ -11,10 +11,6 @@ class User < ApplicationRecord
     end
   end
 
-  has_many :user_rooms
-  has_many :chats
-  has_many :rooms, through: :user_rooms
-
   #ユーザーに紐づく情報を削除する。
   after_update :destroy_unsubscribe_user_info, if: -> { saved_change_to_is_deleted?(from:false,to:true) }
 
@@ -22,10 +18,17 @@ class User < ApplicationRecord
   has_many :restaurants, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :tags, dependent: :destroy
+
+  #チャットに関するアソシエーションを書いてます
+  has_many :user_rooms
+  has_many :chats
+  has_many :rooms, through: :user_rooms
 
   #フォローした、されたの関係
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+
 
   #一覧画面で使う
   has_many :followings, through: :relationships, source: :followed
@@ -58,9 +61,12 @@ class User < ApplicationRecord
 
   private
 
+#退会した会員に紐ずく情報しています。
   def destroy_unsubscribe_user_info
     self.restaurants.destroy_all
     self.comments.destroy_all
     self.favorites.destroy_all
+    relationships.destroy_all
+    reverse_of_relationships.destroy_all
   end
 end
