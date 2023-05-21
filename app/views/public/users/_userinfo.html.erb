@@ -15,34 +15,34 @@
       <table class= "table table-striped mt-5">
         <thead>
           <tr>
-            <th>name</th>
+            <th>Name</th>
             <td><%= user.name %></td>
           </tr>
         </thead>
         <tbory>
           <tr>
-            <th>introduction</th>
+            <th>Introduction</th>
             <td><%= user.user_introduction %></td>
           </tr>
           <tr>
-            <td>followers</td>
+            <th>Follor</th>
             <td>
-              <%= link_to user.followers.count, followers_path(user_id: user.id) %>
+              <%= link_to user.followings.count, followings_path(user_id: user.id) %>
             </td>
           </tr>
           <tr>
-            <td>followed</td>
+            <th>Follower</th>
             <td>
-              <%= link_to user.followings.count, followings_path(user_id: user.id) %>
+              <%= link_to user.followers.count, followers_path(user_id: user.id) %>
             </td>
           </tr>
           <% unless user == current_user %>
             <tr>
               <td>
                 <% if current_user.following?(user) %>
-                  <%= link_to "unfollow", relationships_path(user_id: user.id),method: :delete, class: "btn btn-danger" %>
+                  <%= link_to "Unfollow", relationships_path(user_id: user.id),method: :delete, class: "btn btn-danger" %>
                 <% else %>
-                  <%= link_to "follow", relationships_path(user_id: user.id), method: :post, class: "btn btn-primary" %>
+                  <%= link_to "Follow", relationships_path(user_id: user.id), method: :post, class: "btn btn-primary" %>
                 <% end %>
               </td>
               <td>

@@ -5,6 +5,7 @@
       <th>画像</th>
       <th>店名</th>
       <th>コメント数</th>
+      <th>退会させる</th>
     </tr>
       <% @restaurant.each do |restaurant| %>
     <tr>
@@ -15,6 +16,8 @@
         <%end%>
       </td>
       <td><%= restaurant.comments.count %></td>
+      <td>
+      </td>
     </tr>
     <%end%>
   </table>
