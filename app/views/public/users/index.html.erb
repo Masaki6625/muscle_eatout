@@ -20,7 +20,7 @@
           <div class="col-sm-6 col-md-4 mb-4">
             <div class="cardindex mt-4 shadow-lg">
               <%= link_to user_path(user.id) do %>
-                <%= image_tag user.get_profile_image(261,197) %>
+                <%= image_tag user.get_profile_image(261,197), class: "cord-img-top", style: "width:100%" %>
               <%end%>
               <div class="card-body">
                 <h4 class="card-title"><%= user.name %></h4>
