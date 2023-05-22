@@ -9,8 +9,10 @@ class Restaurant < ApplicationRecord
   has_many :favorited_users, through: :favorites, source: :user
 
 
+#フォームで入力された住所から緯度、経度を計算しています。
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
+#空のデータを消す作業をしています。
   after_destroy :destroy_empty_tag
 
   #検索機能で設定したransackの渡すデータを設定している。
@@ -60,7 +62,7 @@ class Restaurant < ApplicationRecord
     end
 
   end
-
+#タグに紐づかない情報を探しています。
   def destroy_empty_tag
     Tag.where.missing(:restaurant_tags).destroy_all
   end

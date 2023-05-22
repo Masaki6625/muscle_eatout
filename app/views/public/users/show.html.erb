@@ -15,13 +15,13 @@
       <%= render 'public/users/userinfo', user: @user %>
     </div>
     <div class="col-md-9">
-      <p class="mt-5 ml-4"><%= link_to "お気に入り記事", favorites_user_path(@user) %></p>
-      
+      <p class="mt-5 ml-4"><%= link_to "お気に入り記事", favorites_user_path(@user), class: "btn btn-primary btn-md" %></p>
+
       <!--ユーザーの投稿した店舗一覧-->
       <div class="row">
         <% @restaurant.each do |restaurant| %>
           <div class="col-sm-6 col-md-6 col-lg-4 mb-4">
-            <div class="card mt-4 shadow-lg w-100">
+            <div class="cardshow mt-4 shadow-lg w-100">
               <%= link_to restaurant_path(restaurant.id) do %>
                 <%= image_tag restaurant.get_image(257, 226), class: "cord-img-top", style: "width:100%" %>
               <% end %>
@@ -44,6 +44,7 @@
     </div>
   </div>
 </div>
+
 
 <!--ヘッダー部分の動きをつけています-->
 <script>

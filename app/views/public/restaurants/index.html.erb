@@ -27,7 +27,7 @@
         <%end%>
       <div class="row">
         <% @restaurants.each do |restaurant| %>
-          <div class="col-sm-6 col-lg-4 mb-5">
+          <div class="col-sm-6 col-lg-4 mb-2">
             <div class="cardindex mx-auto mt-4 shadow-lg">
               <%= link_to restaurant_path(restaurant.id) do %>
                 <%= image_tag restaurant.get_image(253, 255), class: "card-img-top" %>
@@ -75,12 +75,12 @@
             </div>
           </div>
         <% end %>
-        <div class="text-center">
-          <%= paginate @restaurants %>
-        </div>
       </div>
     </div>
   </div>
+</div>
+<div class="d-flex justify-content-center mb-4">
+  <%= paginate @restaurants %>
 </div>
 
 
