@@ -21,7 +21,7 @@
       <div class="row">
         <% @restaurant.each do |restaurant| %>
           <div class="col-sm-6 col-md-6 col-lg-4 mb-4">
-            <div class="cardshow mt-4 shadow-lg w-100">
+            <div class="cardshows mt-4 shadow-lg w-100">
               <%= link_to restaurant_path(restaurant.id) do %>
                 <%= image_tag restaurant.get_image(257, 226), class: "cord-img-top", style: "width:100%" %>
               <% end %>
