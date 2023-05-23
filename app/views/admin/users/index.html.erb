@@ -7,7 +7,6 @@
       <th>名前</th>
       <th>投稿数</th>
       <th>コメント数</th>
-      <th>削除</th>
     </tr>
     <% @users.each do |user| %>
     <tr>
@@ -21,9 +20,6 @@
         <%= user.restaurants.count %>
       </td>
       <td><%= user.comments.count %></td>
-      <td>
-        <%#= link_to "削除する", admin_user_path(user), method: :delete, class: "btn btn-danger btn-md" %>
-      </td>
       </tr>
     <%end%>
   </table>
