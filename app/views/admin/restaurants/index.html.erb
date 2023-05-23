@@ -6,6 +6,7 @@
         <tr>
           <th>画像</th>
           <th>店名</th>
+          <th>投稿者</th>
           <th>いいね</th>
           <th>コメント</th>
           <th>削除</th>
@@ -19,6 +20,11 @@
             <%= link_to admin_restaurant_path(restaurant.id) do %>
             <%= restaurant.shop_name %>
             <%end%>
+          </td>
+          <td>
+            <%= link_to admin_user_path(restaurant.user.id) do %>
+            <%= restaurant.user.name %>
+            <% end %>
           </td>
           <td>
             <%= restaurant.favorites.count %>

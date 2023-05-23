@@ -8,6 +8,10 @@ class Restaurant < ApplicationRecord
   has_many :tags, through: :restaurant_tags
   has_many :favorited_users, through: :favorites, source: :user
 
+  #バリデーションの設定
+  validates :shop_name, length: { maximum: 30 }
+  validates :introduction, length: { maximum: 100 }
+
 
 #フォームで入力された住所から緯度、経度を計算しています。
   geocoded_by :address

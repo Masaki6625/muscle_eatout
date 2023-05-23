@@ -14,6 +14,7 @@ class User < ApplicationRecord
   #ユーザーに紐づく情報を削除する。
   after_update :destroy_unsubscribe_user_info, if: -> { saved_change_to_is_deleted?(from:false,to:true) }
 
+  #アソシエーションを行っている部分
   has_one_attached :profile_image
   has_many :restaurants, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -50,6 +51,14 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && (is_deleted == false)
   end
+
+  #バリデーションの設定
+    validates :name, presence: true, length: { maximum: 20 }
+    validates :email, presence: true
+    validates :user_introduction, length: { maximum: 40 }
+    validates :password, length: { maximum: 10 }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
+    validates :password_confirmation, length: { maximum: 10 }
+
 
   def get_profile_image(width,height)
     unless profile_image.attached?

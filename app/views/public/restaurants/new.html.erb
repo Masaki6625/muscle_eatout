@@ -1,4 +1,12 @@
 <div>
+  <% if @restaurant.errors.any? %>
+    <%= @restaurant.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @restaurant.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
   <div class="container mt-5 mb-3">
     <div class="row">
       <div class="col-md-4 offset-md-4">
