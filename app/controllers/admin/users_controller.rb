@@ -12,9 +12,9 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    restaurant = Restaurant.find(params[:id])
-    restaurant.destroy
-    redirect_to admin_restaurants_path
+    user = User.find(params[:id])
+    user.destroy
+    redirect_to admin_users_path
   end
 
   #private

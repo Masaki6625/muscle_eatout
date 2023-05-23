@@ -4,9 +4,11 @@
     <div class="col-md-12">
       <table class="table">
         <tr>
-          <td>画像</td>
-          <td>店名</td>
-          <td>コメント</td>
+          <th>画像</th>
+          <th>店名</th>
+          <th>いいね</th>
+          <th>コメント</th>
+          <th>削除</th>
         </tr>
         <% @restaurants.each do |restaurant| %>
         <tr>
@@ -19,7 +21,13 @@
             <%end%>
           </td>
           <td>
+            <%= restaurant.favorites.count %>
+          </td>
+          <td>
             <%= restaurant.comments.count %>
+          </td>
+          <td>
+            <%= link_to "削除する", admin_restaurant_path(restaurant), method: :delete, class: "btn btn-danger btn-md", "data-confirm" => "本当に削除しますか？" %>
           </td>
         </tr>
         <%end%>

@@ -1,5 +1,5 @@
 <div>
-  <div class="container mt-5 mb-5">
+  <div class="container mt-5 mb-3">
     <div class="row">
       <div class="col-md-4 offset-md-4">
         <div class="card w-55 mx-auto mt-4 shadow-lg">
@@ -17,14 +17,14 @@
                 <span class="mr-2">
                   <i class="fas fa-store"></i>
                 </span>
-                  <%= f.text_field :shop_name, placeholder: "お店の名前" %>
+                  <%= f.text_field :shop_name, required: true, placeholder: "お店の名前" %>
               </div>
 
               <div class="input-group-prepend pt-4 pl-4">
                 <span class="mr-2">
                   <i class="fas fa-comment-alt"></i>
                 </span>
-                  <%= f.text_area :introduction, placeholder: "お店の紹介" %>
+                  <%= f.text_area :introduction, required: true, placeholder: "お店の紹介" %>
               </div>
 
               <div class="input-group-prepend pt-4 pl-4">
@@ -65,5 +65,8 @@
         <%end%>
       </div>
     </div>
+  </div>
+  <div class="text-center mb-4">
+    <%= link_to "戻る", restaurants_path, class: "btn btn-dark btn-sm" %>
   </div>
 </div>

@@ -5,6 +5,7 @@
       <th>画像</th>
       <th>店名</th>
       <th>コメント</th>
+      <th>削除する</th>
     </tr>
     <tr>
       <td>
@@ -17,6 +18,9 @@
         <div class="comment card-text">
           <%= render 'public/comments/comments', restaurant: @restaurant %>
         </div>
+      </td>
+      <td>
+        <%= link_to "削除する", admin_restaurant_path(@restaurant), method: :delete, class: "btn btn-danger btn-md", "data-confirm" => "本当に削除しますか？"  %>
       </td>
     </tr>
   </table>

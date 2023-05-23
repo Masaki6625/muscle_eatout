@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     #root :to => "public/homes#top"
-    resources :restaurants, only: [:index, :show]
+    resources :restaurants, only: [:index, :show, :destroy]
     resources :users, only: [:index, :show, :destroy]
     resources :comments, only: [:create, :destroy]
   end
