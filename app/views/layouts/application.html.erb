@@ -10,12 +10,16 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>" async defer></script>
   </head>
   <body>
     <%= render 'layouts/header' %>
-    <%= yield %>
+    <div style="min-height: 120vh">
+      <%= yield %>
+    </div>
+    <footer>
+      <%= render 'layouts/footer' %>
+    </footer>
   </body>
-  <footer>
-    <%= render 'layouts/footer' %>
-  </footer>
+
 </html>

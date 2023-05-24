@@ -54,7 +54,7 @@ class User < ApplicationRecord
 
   #バリデーションの設定
     validates :name, presence: true, length: { maximum: 20 }
-    validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
+    validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "例: test@11.comのように入力してください。" }
     validates :user_introduction, length: { maximum: 40 }
     validates :password, length: { maximum: 30 }
     validates :password_confirmation, length: { maximum: 30 }

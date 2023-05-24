@@ -69,7 +69,10 @@ gem 'geocoder'
 
 gem 'dotenv-rails'
 
-gem 'dotenv-rails'
+gem 'rails-i18n'
+
+gem 'devise-i18n-views'
+
 group :production do
   gem 'mysql2'
 end
