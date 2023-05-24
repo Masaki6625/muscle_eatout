@@ -31,7 +31,7 @@
   * メンターの方へ（現時点では、実装したと仮定して記述しています）
 
 ## 設計書
-  * 現在考え中です
+  * ご連絡を頂いてからお見せ致します。
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -40,4 +40,17 @@
 - IDE：Cloud9
 
 ## 使用素材
-- 使用検討中です
+- https://www.irasutoya.com/2016/01/blog-post_629.html（メダカの写真）
+- https://illust8.com/contents/13923（はまちの写真）
+- https://illustimage.com/?id=3470（ふぐの写真）
+- https://tsukatte.com/pacific-saury/(さんまの写真)
+- https://illust8.com/contents/14107（たらの写真）
+- https://www.photo-ac.com/main/search?q=%E3%82%AB%E3%83%95%E3%82%A7+%E5%A4%96%E8%A6%B3&qt=&p=1（カフェの写真）
+- https://www.photo-ac.com/main/search?qt=&pt=B&p=5&c_id=6&c_name=%E7%94%BA%E4%B8%A6%E3%81%BF%E3%83%BB%E5%BB%BA%E7%89%A9&q=%E3%83%AC%E3%82%B9%E3%83%88%E3%83%A9%E3%83%B3（レストランの写真）
+- https://min-chi.material.jp/category/fm/bg_c/page/2/（居酒屋の写真）
+- https://www.ac-illust.com/main/search_result.php?word=%E3%81%8A%E3%81%97%E3%82%83%E3%82%8C%E3%81%AA%E3%82%AB%E3%83%95%E3%82%A7(カフェの写真)
+- https://pixabay.com/ja/images/search/%E3%82%AB%E3%83%95%E3%82%A7/（レストランヘッダーの写真）
+- https://publicdomainq.net/restaurant-cafe-0063606/（レストランの写真）
+- https://www.ac-illust.com/main/search_result.php?word=%E5%A4%96%E9%A3%9F（レストランの写真）
+- https://www.photo-ac.com/main/search?q=%E3%83%AC%E3%82%B9%E3%83%88%E3%83%A9%E3%83%B3&srt=dlrank&nq=&sizesec=all&orientation=all&c_names%5B%5D=6&creator=&ngcreator=&color=all&mdlrlrsec=all&prprlrsec=all&model_count=-1&age=all&qt=&qid=(レストランの写真
+- https://publicdomainq.net/sunset-group-silhouette-0029851/（ユーザーのヘッダー写真）

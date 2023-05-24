@@ -44,9 +44,9 @@ Restaurant.create!(
   [
     {shop_name: 'カフェテリア', introduction: '糖質を抑えたクッキーとおいしいコーヒーが飲めました！', star: '3', address: '大坂城', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/restaurant1.jpg"), filename:"restaurant1.jpg"), user_id: users[0].id },
     {shop_name: 'グローバルカフェテリア', introduction: 'おいしいアイスクリームを食べれました', star: '4' , address: '姫路城', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/restaurant2.jpg"), filename:"restaurant2.jpg"), user_id: users[1].id },
-    {shop_name: 'イタリアン', introduction: '糖質を抑えたパスタを食べることができました！', star: '5' , address: '名古屋城', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/restaurant3.jpg"), filename:"restaurant3.jpg"), user_id: users[2].id },
-    {shop_name: 'リンコントロ', introduction: 'おいしいイタリアンをいただけました', star: '1' , address: '松本城', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/restaurant4.jpg"), filename:"restaurant4.jpg"), user_id: users[3].id },
-    {shop_name: 'ラ・カーサミーア', introduction: '理由を話したらソースなどは油を使わず、メインもお塩だけで作ってくださいました！', star: '5' , address: '岐阜城', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/restaurant5.jpg"), filename:"restaurant5.jpg"), user_id: users[4].id },
+    {shop_name: 'イタリアン', introduction: '糖質を抑えたパスタを食べることができました！', star: '5' , address: '名古屋城', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/restaurant7.jpg"), filename:"restaurant7.jpg"), user_id: users[2].id },
+    {shop_name: 'リンコントロ', introduction: 'おいしいイタリアンをいただけました', star: '1' , address: '松本城', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/restaurant8.jpg"), filename:"restaurant8.jpg"), user_id: users[3].id },
+    {shop_name: 'ラ・カーサミーア', introduction: '理由を話したらソースなどは油を使わず、メインもお塩だけで作ってくださいました！', star: '5' , address: '岐阜城', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/restaurant9.jpg"), filename:"restaurant9.jpg"), user_id: users[4].id },
     {shop_name: '七福神', introduction: 'ささみを丸ごと焼いたメニューがありました。', star: '4' , address: '小田原城', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/restaurant6.jpg"), filename:"restaurant6.jpg"), user_id: users[4].id }
   ]
 )
