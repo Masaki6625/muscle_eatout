@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     #root :to => "public/homes#top"
+    patch 'users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     resources :restaurants, only: [:index, :show, :destroy]
     resources :users, only: [:index, :show, :destroy]
     resources :comments, only: [:create, :destroy]
