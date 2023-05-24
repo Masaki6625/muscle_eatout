@@ -11,6 +11,8 @@ class Restaurant < ApplicationRecord
   #バリデーションの設定
   validates :shop_name, length: { maximum: 30 }
   validates :introduction, length: { maximum: 100 }
+  validates :star, presence: true
+  #validates :restaurant_tags, length: { maximum: 50 }
 
 
 #フォームで入力された住所から緯度、経度を計算しています。

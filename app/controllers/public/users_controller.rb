@@ -18,12 +18,16 @@ before_action :authenticate_user!
     @user = User.find(params[:id])
   end
 
-  def update
-    is_matching_login_user
-    @user = User.find(params[:id])
-    @user.update!(user_params)
+def update
+  is_matching_login_user
+  @user = User.find(params[:id])
+  if @user.update(user_params)
     redirect_to user_path(current_user.id)
+  else
+    render :edit
   end
+end
+
 
   def withdraw
   end

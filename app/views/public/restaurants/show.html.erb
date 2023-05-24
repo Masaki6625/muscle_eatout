@@ -37,7 +37,8 @@
               <div class="col-12 mb-2">
                   <div id="star">
                     <script>
-                      let elem = document.querySelector('#star');
+                      (() => {
+                        let elem = document.querySelector('#star');
                         let opt = {
                         starOn: "<%= asset_path('star-on.png') %>",
                         starOff: "<%= asset_path('star-off.png') %>",
@@ -46,7 +47,7 @@
                         score: <%= @restaurant.star %>,
                         readOnly: true
                         };
-                      raty(elem, opt);
+                      raty(elem, opt);})()
                     </script>
                   </div>
                   <div class="row justify-content-center">
@@ -100,9 +101,11 @@
                   position: uluru,
                   map: map
                 });
-                   }
+               }
+               if (window.google) {
+                 initMap()
+               }
               </script>
-              <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
             </div>
             <hr>
             <div class="comment card-text">

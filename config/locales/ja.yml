@@ -1,0 +1,25 @@
+ja:
+  activerecord:
+    models:
+      restaurant: レストラン
+      user: ユーザー
+    attributes:
+      restaurant:
+        image: 商品の画像
+        shop_name: レストラン名
+        introduction: 紹介文
+        star: 星レビュー
+        address: 住所
+
+      user:
+        name: お名前
+        user_introduction: 自己紹介文
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 再入力されたパスワード
+
+    errors:
+      messages:
+        not_saved: 保存できませんでした。
+
+   
