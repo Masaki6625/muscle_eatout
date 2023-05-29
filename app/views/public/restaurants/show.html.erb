@@ -16,7 +16,7 @@
     </div>
 
     <div class="col-md-9">
-      <div class="card w-auto mx-auto mt-4 shadow-lg">
+      <div class="card mt-4 shadow-lg">
         <%= image_tag @restaurant.get_image(600,600), class: "card-img-top" %>
           <div class="card-body">
             <h3 class="card-text pt-3 pb-2 border-bottom">
@@ -102,9 +102,9 @@
                   map: map
                 });
                }
-               if (window.google) {
-                 initMap()
-               }
+              if (window.google) {
+                initMap()
+              }
               </script>
             </div>
             <hr>
