@@ -8,7 +8,7 @@
   </div>
 </div>
 
-<div class= "container px-5 px-sm-0">
+<div class= "container px-5 px-sm-0 mb-5">
   <div class='row'>
     <div class="col-md-3">
       <%= render 'public/users/userinfo', user: @user %>
@@ -18,7 +18,7 @@
       <div class= "row">
         <% @users.each do |user| %>
           <div class="col-sm-6 col-md-4 mb-4">
-            <div class="cardindex mt-4 shadow-lg w-100 h-100">
+            <div class="cardindex mt-4  shadow-lg w-100 h-100">
               <%= link_to user_path(user.id) do %>
                 <%= image_tag user.get_profile_image(261,197), class: "cord-img-top", style: "width:100%" %>
               <%end%>
