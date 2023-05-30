@@ -13,7 +13,7 @@
   <%= flash[:notice] %>
 </div>
 
-<div class="container" style="margin-bottom: 100px;">
+<div class="container mb-2">
   <div class="row">
     <div class="col-lg-3 h-100">
       <%= render 'public/restaurants/tag_search', tags: @tag_list %>
@@ -27,8 +27,8 @@
         <%end%>
       <div class="row">
         <% @restaurants.each do |restaurant| %>
-          <div class="col-sm-6 col-lg-4 mb-2">
-            <div class="cardindex mt-4 mb-5 shadow-lg h-100">
+          <div class="col-sm-6 col-lg-4">
+            <div class="cardindex mt-4 mb-5 shadow-lg" style = "height: 90%;" >
               <%= link_to restaurant_path(restaurant.id) do %>
                 <%= image_tag restaurant.get_image(253, 255), class: "card-img-top" %>
               <% end %>
