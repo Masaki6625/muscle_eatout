@@ -1,10 +1,12 @@
 class Public::RestaurantsController < ApplicationController
+  require 'language'
   def new
     @restaurant = Restaurant.new
   end
 
   def create
     @restaurant = Restaurant.new(restaurant_params)
+    @restaurant.score = Language.get_data(restaurant_params[:introduction])
       @restaurant.user_id = current_user.id
       tag_list = params[:restaurant][:name].split(',')
       if  @restaurant.save
