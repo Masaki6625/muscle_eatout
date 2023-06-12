@@ -3,35 +3,38 @@
     <div class="container-md">
       <%= link_to root_path do %>
       <h1 id='globalNavH1' class="text-center text-dark mt-3" style="font-family: 'Sacrament', cursive;">Musle Eatout</h1>
-      <%end%>
+      <% end %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto"></ul>
         <!--会員がログインしているとき-->
         <% if user_signed_in? %>
-        <li class="list-unstyled text-dark mr-1">
+        <li class="list-unstyled text-dark mr-1 nav-link">
           <%= link_to user_path(current_user), class: 'btn bg-link btn-sm' do %>
           <i class="fas fa-user-clock"></i>My page
-          <%end%>
+          <% end %>
         </li>
-        <li class="list-unstyled text-dark mr-1">
+        <li class="list-unstyled text-dark mr-1 nav-link">
           <%= link_to restaurants_path, class: 'btn bg-link btn-sm' do %>
           <i class="fas fa-store"></i>レストラン一覧
-          <%end%>
+          <% end %>
         </li>
-        <li class="list-unstyled text-dark mr-1">
+        <li class="list-unstyled text-dark mr-1 nav-link">
           <%= link_to users_path, class:'btn bg-link btn-sm' do %>
             <i class="fas fa-users"></i>会員一覧
-          <%end%>
+          <% end %>
         </li>
-        <li class="list-unstyled text-dark mr-1">
+        <li class="list-unstyled text-dark mr-1 nav-link">
           <%= link_to new_restaurant_path, class: 'btn bg-link btn-sm' do %>
           <i class="fas fa-plus-circle"></i>新規投稿
-          <%end%>
+          <% end %>
         </li>
-        <li class="list-unstyled text-dark mr-1">
+        <li class="list-unstyled text-dark mr-1 nav-link">
           <%= link_to destroy_user_session_path, method: :delete, class: 'btn bg-link btn-sm' do %>
           <i class="fas fa-sign-out-alt"></i>Logout
-          <%end%>
+          <% end %>
         </li>
 
         <!--管理者がログインしているとき-->
@@ -42,17 +45,17 @@
         <li class="list-unstyled text-dark mr-1">
           <%= link_to admin_restaurants_path, class: 'btn bg-link btn-sm' do %>
           <i class="fas fa-store"></i>レストラン一覧
-          <%end%>
+          <% end %>
         </li>
         <li class="list-unstyled text-dark mr-1">
           <%= link_to admin_users_path, class: 'btn bg-link btn-sm' do %>
           <i class="fas fa-users"></i>会員一覧
-          <%end%>
+          <% end %>
         </li>
         <li class="list-unstyled text-dark mr-1">
           <%= link_to destroy_admin_session_path, method: :delete,class: 'btn bg-link btn-sm' do %>
           <i class="fas fa-sign-out-alt"></i>Logout
-          <%end%>
+          <% end %>
         </li>
 
         <!--ゲストがログインしているとき-->
@@ -62,24 +65,24 @@
         <li class="list-unstyled text-dark mr-1">
           <%= link_to root_path, class:'btn bg-link btn-sm' do %>
           <i class="fas fa-hamburger"></i>Top
-          <%end%>
+          <% end %>
         </li>
         <li class="list-unstyled text-dark mr-1">
           <%= link_to guest_user_path, method: :post, class:'btn bg-lonk btn-sm' do %>
           <i class="far fa-user"></i></i>ゲストユーザー
-          <%end%>
+          <% end %>
         </li>
         <li class="list-unstyled text-dark mr-1">
           <%= link_to new_user_registration_path, class:'btn bg-link btn-sm' do %>
           <i class="fas fa-user-plus"></i>Sign up
-          <%end%>
+          <% end %>
         </li>
         <li class="list-unstyled text-dark" >
           <%= link_to new_user_session_path, class:'btn bg-link btn-sm' do %>
           <i class="fas fa-sign-in-alt"></i>Log in
-          <%end%>
+          <% end %>
         </li>
-        <%end%>
+        <% end %>
         </ul>
       </div>
     </div>
