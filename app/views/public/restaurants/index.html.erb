@@ -15,7 +15,7 @@
 
 <div class="container mb-2">
   <div class="row">
-    <div class="col-lg-3 h-100">
+    <div class="col-lg-3 col-md-5 h-100">
       <%= render 'public/restaurants/tag_search', tags: @tag_list %>
     </div>
     <div class="col-lg-9">
@@ -27,7 +27,7 @@
         <%end%>
       <div class="row">
         <% @restaurants.each do |restaurant| %>
-          <div class="col-sm-6 col-lg-4">
+          <div class="col-sm-6 col-lg-4 col-md-6">
             <div class="cardindex mt-4 mb-5 shadow-lg" style = "height: 90%;" >
               <%= link_to restaurant_path(restaurant.id) do %>
                 <%= image_tag restaurant.get_image(253, 255), class: "card-img-top" %>
@@ -97,6 +97,7 @@
       $('#globalNav').removeClass('bg-white').addClass('bg-clear')
       $('#globalNav').find('.list-unstyled>a').removeClass('text-dark').addClass('text-light')
       $('#globalNavH1').removeClass('text-dark').addClass('text-light')
+      $('.nav-link').removeClass('text-dark').addClass('text-light')
       $('.restaurantindex').css('height', '350px')
       $('#globalNav').find('.container-md').css('position', 'relative')
       $('#restaurant_index').css('position', 'relative').css('top', '-90px')
@@ -105,6 +106,7 @@
       $('#globalNav').removeClass('bg-clear').addClass('bg-white')
       $('#globalNav').find('.list-unstyled>a').removeClass('text-light').addClass('text-dark')
       $('#globalNavH1').removeClass('text-light').addClass('text-dark')
+      $('.nav-link').removeClass('text-light').addClass('text-dark')
       $('.restaurantindex').css('height', '270px')
       $('#globalNav').find('.container-md').css('position', 'static')
       $('#restaurant_index').css('position', 'static').css('top', '0px')

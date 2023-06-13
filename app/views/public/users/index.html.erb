@@ -2,32 +2,32 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-7 mx-auto text-center">
-        <h1 class="text-white">ユーザー 一覧</h1>
+        <h1 class="text-white">ユーザー一覧</h1>
       </div>
     </div>
   </div>
 </div>
 
-<div class= "container px-5 px-sm-0 mb-5">
-  <div class='row'>
-    <div class="col-md-3">
+<div class="container px-5 px-sm-0 mb-5">
+  <div class="row">
+    <div class="col-md-5">
       <%= render 'public/users/userinfo', user: @user %>
       <%#= render 'public/restaurants/favoritesindex', collection: @favorite_restaurants %>
     </div>
-    <div class="col-md-9 mt-4">
-      <div class= "row">
+    <div class="col-md-7 mt-4">
+      <div class="row row-cols-1 row-cols-md-2"> 
         <% @users.each do |user| %>
-          <div class="col-sm-6 col-md-4 mb-4">
-            <div class="cardindex mt-4  shadow-lg w-100 h-100">
+          <div class="col mb-4">
+            <div class="cardindex mt-4 shadow-lg w-100 h-100">
               <%= link_to user_path(user.id) do %>
                 <%= image_tag user.get_profile_image(261,197), class: "cord-img-top", style: "width:100%" %>
-              <%end%>
+              <% end %>
               <div class="card-body">
                 <h4 class="card-title"><%= user.name %></h4>
-               </div>
+              </div>
             </div>
           </div>
-        <%end%>
+        <% end %>
       </div>
     </div>
   </div>
@@ -44,6 +44,7 @@
       $('#globalNav').removeClass('bg-white').addClass('bg-clear')
       $('#globalNav').find('.list-unstyled>a').removeClass('text-dark').addClass('text-light')
       $('#globalNavH1').removeClass('text-dark').addClass('text-light')
+      $('.nav-link').removeClass('text-dark').addClass('text-light')
       $('.userindex').css('height', '350px')
       $('#globalNav').find('.container-md').css('position', 'relative')
       $('#user_index').css('position', 'relative').css('top', '-90px')
@@ -52,6 +53,7 @@
       $('#globalNav').removeClass('bg-clear').addClass('bg-white')
       $('#globalNav').find('.list-unstyled>a').removeClass('text-light').addClass('text-dark')
       $('#globalNavH1').removeClass('text-light').addClass('text-dark')
+      $('.nav-link').removeClass('text-light').addClass('text-dark')
       $('.userindex').css('height', '270px')
       $('#globalNav').find('.container-md').css('position', 'static')
       $('#user_index').css('position', 'static').css('top', '0px')

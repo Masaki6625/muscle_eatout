@@ -58,6 +58,7 @@ class Public::RestaurantsController < ApplicationController
 
   def update
     @restaurant = Restaurant.find(params[:id])
+    @restaurant.score = Language.get_data(restaurant_params[:introduction])
     tag_list = params[:restaurant][:name].split(',')
     if  @restaurant.update(restaurant_params)
         @restaurant.save_tag(tag_list)
