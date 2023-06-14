@@ -1,0 +1,3 @@
+document.getElementById('follow-ajax').innerHTML = '<%= j(render partial: "public/users/followbutton", locals: { user: @user }) %>';
+document.getElementById('follower_link').innerHTML = '<%= j(render partial: "public/users/follower", locals: { user: @user }) %>';
+document.getElementById('chat_link').innerHTML = '<%= j(render partial: "public/users/chat", locals: { user: @user }) %>';

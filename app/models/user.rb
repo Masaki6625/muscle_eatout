@@ -72,10 +72,12 @@ class User < ApplicationRecord
 
 #退会した会員に紐ずく情報しています。
   def destroy_unsubscribe_user_info
-    self.restaurants.destroy_all
-    self.comments.destroy_all
-    self.favorites.destroy_all
-    relationships.destroy_all
-    reverse_of_relationships.destroy_all
+    unless
+      self.restaurants.destroy_all
+      self.comments.destroy_all
+      self.favorites.destroy_all
+      relationships.destroy_all
+      reverse_of_relationships.destroy_all
+    end
   end
 end

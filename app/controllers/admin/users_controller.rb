@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
   #before_action :if_not_admin
   #before_action :set_restaurant, only: [:index, :show ,:destroy]
   def index
-    @users = User.where(is_deleted: false)
+    @users = User.all
   end
 
   def show
@@ -14,6 +14,14 @@ class Admin::UsersController < ApplicationController
   def destroy
     user = User.find(params[:id])
     user.destroy
+    redirect_to admin_users_path
+  end
+
+  def unsubscribe
+    @user = User.find(params[:id])
+    @user.update(is_deleted: !@user.is_deleted)
+    reset_session
+    flash[:notice] = "退会処理を実行しました"
     redirect_to admin_users_path
   end
 

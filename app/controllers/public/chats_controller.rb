@@ -20,6 +20,7 @@ end
 
   def create
     @chat = current_user.chats.new(chat_params)
+    @chat = User.find_by(user_id: chat)
     render :validater unless @chat.save
   end
 

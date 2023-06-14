@@ -26,29 +26,23 @@
           </tr>
           <tr>
             <th>Follor</th>
-            <td>
-              <%= link_to user.followings.count, followings_path(user_id: user.id) %>
+            <td id="follor_link">
+              <%= render 'public/users/follor', user: user %>
             </td>
           </tr>
           <tr>
             <th>Follower</th>
-            <td>
-              <%= link_to user.followers.count, followers_path(user_id: user.id) %>
+            <td id="follower_link">
+              <%= render 'public/users/follower', user: user %>
             </td>
           </tr>
           <% unless user == current_user %>
             <tr>
-              <td>
-                <% if current_user.following?(user) %>
-                  <%= link_to "Unfollow", relationships_path(user_id: user.id),method: :delete, class: "btn btn-danger" %>
-                <% else %>
-                  <%= link_to "Follow", relationships_path(user_id: user.id), method: :post, class: "btn btn-primary" %>
-                <% end %>
+              <td id="follow-ajax">
+                <%= render 'public/users/followbutton', user: user %>
               </td>
-              <td>
-                <% if current_user != user && current_user.followings.include?(user) && user.followings.include?(current_user) %>
-                  <%= link_to 'chat', chat_path(user.id), class: "ml-3 btn btn-primary" %>
-                <% end %>
+              <td id="chat_link">
+                <%= render 'public/users/chat', user: user %>
               </td>
             </tr>
           <% end %>
