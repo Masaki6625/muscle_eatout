@@ -1,0 +1,11 @@
+<div class="text-center">
+  <div class="card">
+    <% notifications = @notifications.where.not(visitor_id: current_user.id) %>
+    <% if notifications.exists? %>
+      <%= render partial: "public/notifications/notification", collection: notifications %>
+      <%= paginate notifications %>
+    <% else %>
+      <p>通知はありません</p>
+    <% end %>
+  </div>
+</div>

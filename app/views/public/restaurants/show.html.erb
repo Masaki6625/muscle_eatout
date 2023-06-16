@@ -13,7 +13,7 @@
   <div class="row">
     <div class="col-md-3">
       <%= render 'public/restaurants/tag_search', tags: @tags %>
-    
+
 
       <div class="col-md-9">
         <div class="card mt-4 shadow-lg">
@@ -29,7 +29,7 @@
                   <%= image_tag @restaurant.user.get_profile_image(80,80), class: "mt-3 rounded-circle " %>
                 </div>
                 <div class="col-lg-11">
-  
+
                   <p class="card-text mt-3">
                     <%= @restaurant.introduction %>
                   </p>
@@ -92,7 +92,7 @@
                 <div id="map" style="width:100%;">
                 </div>
               </div>
-  
+
               <div type="text/javascript">
                 <script>
                  function initMap() {
@@ -120,7 +120,7 @@
                 <%= render 'public/comments/form', restaurant: @restaurant, comment: @comment %>
               </div>
             </div>
-  
+
         <div class="text-center mt-4 mb-5">
           <%= link_to "戻る", restaurants_path, class: "btn btn-dark btn-md" %>
         </div>
@@ -146,9 +146,9 @@
     } else {
       $('#headerNav').addClass('border-bottom')
       $('#globalNav').removeClass('bg-clear').addClass('bg-white')
-      $('.nav-link').removeClass('text-light').addClass('text-dark')
       $('#globalNav').find('.list-unstyled>a').removeClass('text-light').addClass('text-dark')
       $('#globalNavH1').removeClass('text-light').addClass('text-dark')
+      $('.nav-link').removeClass('text-light').addClass('text-dark')
       $('.restaurantshow').css('height', '270px')
       $('#globalNav').find('.container-md').css('position', 'static')
       $('#restaurant_show').css('position', 'static').css('top', '0px')

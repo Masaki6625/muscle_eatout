@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
     resources :chats, only: [:show, :create]
+    resources :notifications, only: :index
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

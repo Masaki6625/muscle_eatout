@@ -26,6 +26,12 @@ class User < ApplicationRecord
   has_many :chats
   has_many :rooms, through: :user_rooms
 
+  #通知機能に関するアソシエーション（通知モデルと紐付けている）
+  #自分からの通知
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  #相手からの通知
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+
   #フォローした、されたの関係
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
@@ -52,6 +58,18 @@ class User < ApplicationRecord
     super && (is_deleted == false)
   end
 
+  #フォロー通知を作成するメソッド
+  def create_notification_follow!(current_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follower'])
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        visited_id: id,
+        action: 'follower'
+      )
+      notification.save if notification.valid?
+    end
+  end
+
   #バリデーションの設定
     validates :name, presence: true, length: { maximum: 20 }
     validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "例: test@11.comのように入力してください。" }
@@ -68,9 +86,10 @@ class User < ApplicationRecord
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
 
+
   private
 
-#退会した会員に紐ずく情報しています。
+#退会した会員に紐ずく情報を消す作業しています。
   def destroy_unsubscribe_user_info
     unless
       self.restaurants.destroy_all

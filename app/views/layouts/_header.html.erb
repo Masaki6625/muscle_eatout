@@ -1,25 +1,11 @@
 <header class="sticky-top border-bottom" id="headerNav">
-  <div class="fixed-top d-lg-none">
-    <div class="collapse" id="navbarToggleExternalContent">
-      <div class="bg-dark p-4">
-        <h5 class="text-white h4">表示内容を折りたたむ</h5>
-        <span class="text-muted">ナビゲーションバーのブランドをクリックして切り替えられます。</span>
-      </div>
-    </div>
-    <nav class="navbar navbar-dark bg-clear d-flex justify-content-end">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon text-light"></span>
-      </button>
-    </nav>
-  </div>
-
-  <nav class="navbar navbar-expand-lg bg-white ftco-navbar-light" id="globalNav">
+  <nav class="navbar navbar-expand-lg" id="globalNav">
     <div class="container-md">
       <%= link_to root_path do %>
         <h1 id='globalNavH1' class="text-center text-dark mt-3" style="font-family: 'Sacrament', cursive;">Musle Eatout</h1>
       <% end %>
-      <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon" id="button"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
@@ -42,6 +28,11 @@
             <li class="nav-item">
               <%= link_to new_restaurant_path, class: 'nav-link text-dark' do %>
                 <i class="fas fa-plus-circle"></i> 新規投稿
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to notifications_path, class: 'nav-link text-dark' do %>
+                <i class="fas fa-bell"></i>通知
               <% end %>
             </li>
             <li class="nav-item">
@@ -100,4 +91,3 @@
     </div>
   </nav>
 </header>
-
