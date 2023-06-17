@@ -1,11 +1,13 @@
-<header class="sticky-top border-bottom" id="headerNav">
+<header class="sticky-top border-bottom menu-header" id="headerNav">
   <nav class="navbar navbar-expand-lg bg-opacity-{75|50|25|10}" id="globalNav">
     <div class="container-md">
       <%= link_to root_path do %>
-        <h1 id='globalNavH1' class="text-center text-dark mt-3" style="font-family: 'Sacrament', cursive;">Musle Eatout</h1>
+        <h1 id='globalNavH1' class="text-center text-dark mt-3" style="font-family: 'Sacrament', cursive;" >Musle Eatout</h1>
       <% end %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon" id="button"></span>
+        <span class="navbar-toggler-icon" id="button" style="color: white">
+          <i class="fas fa-bars"></i>
+        </span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
