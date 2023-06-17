@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about'
     get 'users/withdraw' => 'users#withdraw', as: 'withdraw'
     patch 'users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+    delete 'notifications/destroy_all' => 'notifications#destroy_all', as: 'destroy_all'
       resources :restaurants, only: [:new, :index, :create, :show, :edit, :update, :destroy] do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]

@@ -5,4 +5,10 @@ class Public::NotificationsController < ApplicationController
       notification.update(checked: true)
     end
   end
+
+  def destroy_all
+    @notification = Notification.where(visited_id: current_user.id)
+    @notification.destroy_all
+    redirect_to notifications_path
+  end
 end
