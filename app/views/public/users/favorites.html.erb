@@ -59,6 +59,7 @@
       $('.restaurant_favorite').css('height', '350px');
       $('#globalNav').find('.container-md').css('position', 'relative');
       $('#restaurant_favorite').css('position', 'relative').css('top', '-90px');
+      $('#button').removeClass('text-dark').addClass('text-light');
     } else {
       $('#headerNav').addClass('border-bottom');
       $('#globalNav').removeClass('bg-clear').addClass('bg-white');
@@ -67,6 +68,7 @@
       $('.restaurant_favorite').css('height', '270px');
       $('#globalNav').find('.container-md').css('position', 'static');
       $('#restaurant_favorite').css('position', 'static').css('top', '0px');
+      $('#button').removeClass('text-light').addClass('text-dark');
     }
   });
 </script>

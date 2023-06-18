@@ -59,6 +59,7 @@
       $('.usershow').css('height', '350px');
       $('#globalNav').find('.container-md').css('position', 'relative');
       $('#user_show').css('position', 'relative').css('top', '-90px');
+      $('#button').removeClass('text-dark').addClass('text-light');
     } else {
       $('headerNab').addClass('border-bottom');
       $('#globalNav').removeClass('bg-clear').addClass('bg-white');
@@ -68,6 +69,7 @@
       $('.usershow').css('height', '270px');
       $('#globalNav').find('.container-md').css('position', 'static');
       $('#user_show').css('position', 'static').css('top', '0px');
+      $('#button').removeClass('text-light').addClass('text-dark');
     }
   });
 </script>

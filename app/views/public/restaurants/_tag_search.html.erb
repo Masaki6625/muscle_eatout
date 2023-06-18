@@ -1,33 +1,31 @@
-<%if user_signed_in? %>
-<div class="text-left mb-3 mt-3">
-  ようこそ、
-  <%= link_to edit_user_path(current_user.id) do %>
-  <strong class="text-dark"><%= current_user.name%></strong>
-  <%end%>
-  さん！
-  <%end%>
-</div>
+<% if user_signed_in? %>
+  <div class="text-left mb-3 mt-3">
+    ようこそ、
+    <%= link_to edit_user_path(current_user.id) do %>
+      <strong class="text-dark"><%= current_user.name %></strong>
+    <% end %>
+    さん！
+  </div>
+<% end %>
 
 <div class="card mx-auto mt-4 shadow-lg">
   <div class="card-header">
-    <h5 class= "card-title">タグ検索</h5>
+    <h5 class="card-title">タグ検索</h5>
   </div>
 
   <div class="card-body">
     <div class="tags">
       <% @tags.each do |tag| %>
-      <p>
-        <%= link_to tag.name, restaurants_path(tag_id: tag.id), class: "card-link text-secondaty" %>
-      </p>
-      <%end%>
-        <div>
-          <%= search_form_for @q, url: restaurants_path do |f| %>
+        <p>
+          <%= link_to tag.name, restaurants_path(tag_id: tag.id), class: "card-link text-secondaty" %>
+        </p>
+      <% end %>
+
+      <div>
+        <%= search_form_for @q, url: restaurants_path do |f| %>
           <%= f.search_field :name_cont %>
-        </div>
-        <div>
           <%= f.submit '検索', class: "btn btn-primary btn-sm" %>
-          <%end%>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>

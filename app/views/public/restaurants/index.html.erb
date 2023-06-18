@@ -14,11 +14,11 @@
 
 <div class="container mb-2">
   <div class="row">
-    <div class="col-lg-3 col-md-3 h-100">
+    <div id="sidebar" class="col-lg-3 col-md-3 h-100">
       <%= render 'public/restaurants/tag_search', tags: @tag_list %>
-
+    </div><!-- side bar -->
     <div class="col-lg-9 col-md-9">
-      <div class="row">
+    <div class="row">
         <div class="col-lg-12">
           <h3 class="mt-3">検索</h3>
           <%= search_form_for @q2, url: restaurants_path do |f| %>
@@ -29,9 +29,8 @@
              <%= link_to '新しい順', restaurants_path(latest: "true"), class:"btn btn-primary btn-sm" %>
              |<%= link_to '古い順', restaurants_path(old: "true"), class:"btn btn-primary btn-sm" %>
              |<%= link_to '評価の高い順', restaurants_path(star_count: "true"), class:"btn btn-primary btn-sm" %>
-  
-      </div>
-      <div class="row">
+        </div><!-- seach form  -->
+      <div class="row col-12">
         <% @restaurants.each do |restaurant| %>
           <div class="col-sm-6 col-lg-4 col-md-9">
             <div class="cardindex mt-4 mb-5 shadow-lg" style="height: 90%;">
@@ -62,13 +61,13 @@
                       });
                     </script>
                     <div class="d-flex justify-content-between" style="width:80%;margin:auto;">
-                      <div class="" id="favorite_btn_<%= restaurant.id %>">
-                        <%= render 'public/restaurants/favorite', restaurant: restaurant %>
+                        <div class="" id="favorite_btn_<%= restaurant.id %>">
+                          <%= render 'public/restaurants/favorite', restaurant: restaurant %>
+                        </div>
+                        <div>
+                          コメント<%= restaurant.comments.count %>
+                        </div>
                       </div>
-                      <div>
-                        コメント<%= restaurant.comments.count %>
-                      </div>
-                    </div>
                   </div>
                 </div>
                 <div class="mt-3">
@@ -85,11 +84,10 @@
             </div>
           </div>
         <% end %>
-      </div>
+      </div><!-- cards -->
     </div>
   </div>
-</div>
-</div>
+  </div>
 </div>
 
 <div class="d-flex justify-content-center mb-4">
@@ -108,6 +106,7 @@
       $('.restaurantindex').css('height', '350px');
       $('#globalNav').find('.container-md').css('position', 'relative');
       $('#restaurant_index').css('position', 'relative').css('top', '-90px');
+      $('#button').removeClass('text-dark').addClass('text-light');
     } else {
       $('headerNav').addClass('border-bottom');
       $('#globalNav').removeClass('bg-clear').addClass('bg-white');
@@ -117,6 +116,7 @@
       $('.restaurantindex').css('height', '270px');
       $('#globalNav').find('.container-md').css('position', 'static');
       $('#restaurant_index').css('position', 'static').css('top', '0px');
+      $('#button').removeClass('text-light').addClass('text-dark');
     }
   });
 </script>
