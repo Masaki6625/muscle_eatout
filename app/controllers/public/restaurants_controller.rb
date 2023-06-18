@@ -18,25 +18,36 @@ class Public::RestaurantsController < ApplicationController
   end
 
   def index
-    @q2 = Restaurant.ransack(params[:q])
-    @restaurants = @q2.result(distinct: true)
-    @q = Tag.ransack(params[:q])
-    @tag_list = @q.result(distinct: true)
-    if params[:tag_id].present?
-      @tag = Tag.find(params[:tag_id])
-      @restaurants = @tag.restaurants
+      @q =Tag.ransack(params[:q])
+      @q2 = Restaurant.ransack(params[:q])
+      @tags = Tag.all
+    if params[:latest]
+      @restaurants = Restaurant.latest.page(params[:page]).per(6)
+    elsif params[:old]
+      @restaurants = Restaurant.old.page(params[:page]).per(6)
+    elsif params[:star_count]
+      @restaurants = Restaurant.star_count.page(params[:page]).per(6)
+    else
+      @q2 = Restaurant.ransack(params[:q])
+      @restaurants = @q2.result(distinct: true)
+      @q = Tag.ransack(params[:q])
+      @tag_list = @q.result(distinct: true)
+      if params[:tag_id].present?
+        @tag = Tag.find(params[:tag_id])
+        @restaurants = @tag.restaurants
+      end
+      if params[:q].present? && params[:q][:name_cont].present?
+        restrant_tags = RestaurantTag.where(tag_id: @tag_list.pluck(:id))
+        @restaurants = Restaurant.where(id: restrant_tags.pluck(:restaurant_id))
+        # pp @tag_list,restrant_tags, @restaurants
+      end
+      @restaurants = @restaurants.includes(:favorites).
+        sort {|a,b|
+          b.favorites.select(:created_at).order(created_at: :desc).first(1) <=>
+          a.favorites.select(:created_at).order(created_at: :desc).first(1)
+        }
+      @restaurants = Kaminari.paginate_array(@restaurants).page(params[:page]).per(6)
     end
-    if params[:q].present? && params[:q][:name_cont].present?
-      restrant_tags = RestaurantTag.where(tag_id: @tag_list.pluck(:id))
-      @restaurants = Restaurant.where(id: restrant_tags.pluck(:restaurant_id))
-      # pp @tag_list,restrant_tags, @restaurants
-    end
-    @restaurants = @restaurants.includes(:favorites).
-      sort {|a,b|
-        b.favorites.select(:created_at).order(created_at: :desc).first(1) <=>
-        a.favorites.select(:created_at).order(created_at: :desc).first(1)
-      }
-    @restaurants = Kaminari.paginate_array(@restaurants).page(params[:page]).per(6)
   end
 
   def show
@@ -45,6 +56,7 @@ class Public::RestaurantsController < ApplicationController
     @restaurant_tags = @restaurant.tags
     @q = @restaurant.tags.ransack(params[:q])
     @tags = @q.result(distinct: true)
+    #@tags = Tag.all
     if params[:tag_id].present?
       @tag = Tag.find(params[:tag_id])
       @restaurant = @tag.restaurants
@@ -58,6 +70,7 @@ class Public::RestaurantsController < ApplicationController
 
   def update
     @restaurant = Restaurant.find(params[:id])
+    @restaurant.score = Language.get_data(restaurant_params[:introduction])
     tag_list = params[:restaurant][:name].split(',')
     if  @restaurant.update(restaurant_params)
         @restaurant.save_tag(tag_list)

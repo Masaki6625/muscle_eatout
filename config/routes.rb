@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     #root :to => "public/homes#top"
-    patch 'users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+    patch 'users/unsubscribe/:id' => 'users#unsubscribe', as: 'unsubscribe'
     resources :restaurants, only: [:index, :show, :destroy]
     resources :users, only: [:index, :show, :destroy]
     resources :comments, only: [:create, :destroy]
@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about'
     get 'users/withdraw' => 'users#withdraw', as: 'withdraw'
     patch 'users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+    delete 'notifications/destroy_all' => 'notifications#destroy_all', as: 'destroy_all'
       resources :restaurants, only: [:new, :index, :create, :show, :edit, :update, :destroy] do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
@@ -42,6 +43,7 @@ Rails.application.routes.draw do
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
     resources :chats, only: [:show, :create]
+    resources :notifications, only: :index
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

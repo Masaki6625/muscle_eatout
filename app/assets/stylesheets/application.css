@@ -22,3 +22,15 @@
 .bg-clear {
   background-color: rgba(255, 255, 255, 0)!important;
 }
+
+.menu-header {
+   background: currentColor;
+}
+@media screen and (min-width:800px) {
+    /*　画面サイズが800pxからはここを読み込む　*/
+  .menu-header {
+    background: none;
+  }
+}
+
+

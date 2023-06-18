@@ -2,12 +2,13 @@ class Public::RelationshipsController < ApplicationController
 
   def create
     current_user.follow(params[:user_id])
-    redirect_to request.referer
+    @user = User.find(params[:user_id])
+    @user.create_notification_follow!(current_user) #通知機能のメソッド
   end
 
   def destroy
     current_user.unfollow(params[:user_id])
-    redirect_to request.referer
+    @user = User.find(params[:user_id])
   end
 
   def followings

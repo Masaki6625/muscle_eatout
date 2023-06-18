@@ -10,11 +10,11 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-lg-3 col-md-3">
+    <div class="col-lg-3 col-md-4">
       <!--ユーザーの情報-->
       <%= render 'public/users/userinfo', user: @user %>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-8">
       <p class="mt-5 ml-4"><%= link_to "お気に入り記事", favorites_user_path(@user), class: "btn btn-primary btn-md" %></p>
 
       <!--ユーザーの投稿した店舗一覧-->
@@ -55,17 +55,21 @@
       $('#globalNav').removeClass('bg-white').addClass('bg-clear');
       $('#globalNav').find('.list-unstyled>a').removeClass('text-dark').addClass('text-light');
       $('#globalNavH1').removeClass('text-dark').addClass('text-light');
+      $('.nav-link').removeClass('text-dark').addClass('text-light');
       $('.usershow').css('height', '350px');
       $('#globalNav').find('.container-md').css('position', 'relative');
       $('#user_show').css('position', 'relative').css('top', '-90px');
+      $('#button').removeClass('text-dark').addClass('text-light');
     } else {
       $('headerNab').addClass('border-bottom');
       $('#globalNav').removeClass('bg-clear').addClass('bg-white');
       $('#globalNav').find('.list-unstyled>a').removeClass('text-light').addClass('text-dark');
       $('#globalNavH1').removeClass('text-light').addClass('text-dark');
+      $('.nav-link').removeClass('text-light').addClass('text-dark');
       $('.usershow').css('height', '270px');
       $('#globalNav').find('.container-md').css('position', 'static');
       $('#user_show').css('position', 'static').css('top', '0px');
+      $('#button').removeClass('text-light').addClass('text-dark');
     }
   });
 </script>
