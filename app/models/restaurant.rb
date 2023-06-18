@@ -15,6 +15,12 @@ class Restaurant < ApplicationRecord
   validates :shop_name, length: { maximum: 30 }
   validates :introduction, length: { maximum: 100 }
   validates :star, presence: true
+  
+  #並び替え機能
+  #カラムの取り出し方を指示する
+  scope :latest, -> {order(created_at: :desc)} #desc（降順）
+  scope :old, -> {order(created_at: :asc)} #asc（昇順）
+  scope :star_count, -> {order(star: :desc)}
 
 
 #フォームで入力された住所から緯度、経度を計算しています。

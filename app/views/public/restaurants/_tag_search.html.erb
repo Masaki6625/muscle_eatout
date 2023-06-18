@@ -15,7 +15,7 @@
 
   <div class="card-body">
     <div class="tags">
-      <% tags.each do |tag| %>
+      <% @tags.each do |tag| %>
       <p>
         <%= link_to tag.name, restaurants_path(tag_id: tag.id), class: "card-link text-secondaty" %>
       </p>

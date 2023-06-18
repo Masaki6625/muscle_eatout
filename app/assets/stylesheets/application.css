@@ -26,8 +26,8 @@
 .menu-header {
    background: currentColor;
 }
-@media screen and (min-width:480px) {
-    /*　画面サイズが1024pxからはここを読み込む　*/
+@media screen and (min-width:800px) {
+    /*　画面サイズが800pxからはここを読み込む　*/
   .menu-header {
     background: none;
   }
