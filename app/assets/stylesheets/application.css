@@ -27,7 +27,7 @@
    background: currentColor;
 }
 @media screen and (min-width:950px) {
-    /*　画面サイズが800pxからはここを読み込む　*/
+    /*　画面サイズが950pxからはここを読み込む　*/
   .menu-header {
     background: none;
   }
