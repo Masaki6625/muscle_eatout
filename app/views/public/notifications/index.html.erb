@@ -12,12 +12,12 @@
             </span>
           </div>
         </div>
-  <%= render partial: 'public/notifications/notification', collection: notifications %>
-   </div>
+        <%= render partial: 'public/notifications/notification', collection: notifications %>
+      </div>
     </div>
   </div>
 </div>
-  <%= paginate notifications %>
+<%= paginate notifications %>
 <% else %>
   <p class="text-center">
     通知はありません

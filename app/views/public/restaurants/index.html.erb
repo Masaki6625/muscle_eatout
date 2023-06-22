@@ -18,7 +18,7 @@
       <%= render 'public/restaurants/tag_search', tags: @tag_list %>
     </div><!-- side bar -->
     <div class="col-lg-9 col-md-9">
-    <div class="row">
+      <div class="row">
         <div class="col-lg-12">
           <h3 class="mt-3">検索</h3>
           <%= search_form_for @q2, url: restaurants_path do |f| %>
@@ -30,7 +30,7 @@
              |<%= link_to '古い順', restaurants_path(old: "true"), class:"btn btn-primary btn-sm" %>
              |<%= link_to '評価の高い順', restaurants_path(star_count: "true"), class:"btn btn-primary btn-sm" %>
         </div><!-- seach form  -->
-      <div class="row col-12">
+        <div class="row col-12">
         <% @restaurants.each do |restaurant| %>
           <div class="col-sm-6 col-lg-4 col-md-6">
             <div class="cardindex mt-4 mb-5 shadow-lg" style="height: 90%;">
@@ -89,7 +89,7 @@
         <% end %>
       </div><!-- cards -->
     </div>
-  </div>
+    </div>
   </div>
 </div>
 

@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  #ゲストログイン機能のユーザー情報を設定しています。
+  #ゲストログイン機能のユーザー情報を設定してる。
   def self.guest
     find_or_create_by!(name: 'guestuser' ,email: 'guest@example1.com') do |user|
     user.password = SecureRandom.urlsafe_base64
@@ -12,6 +12,7 @@ class User < ApplicationRecord
   end
 
   #ユーザーに紐づく情報を削除する。
+  #下のprivetaの中にあるメソッドから指定したデータをとってくる。
   after_update :destroy_unsubscribe_user_info, if: -> { saved_change_to_is_deleted?(from:false,to:true) }
 
   #アソシエーションを行っている部分
@@ -41,14 +42,17 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
+  #ユーザーをフォローするためのメソッド
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end
 
+  #ユーザーのフォローを解除するためのメソッド
   def unfollow(user_id)
     relationships.find_by(followed_id: user_id).destroy
   end
 
+  #特定のユーザーをフォローしているかどうかを判定するためのメソッド
   def following?(user)
     followings.include?(user)
   end
@@ -77,7 +81,7 @@ class User < ApplicationRecord
     validates :password, length: { maximum: 30 }
     validates :password_confirmation, length: { maximum: 30 }
 
-
+  #プロフィールイメージの基本設定を行っている
   def get_profile_image(width,height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/unless_user.png')

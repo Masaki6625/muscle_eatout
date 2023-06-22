@@ -5,14 +5,12 @@ class Public::FavoritesController < ApplicationController
     @restaurant.create_notification_like!(current_user) #通知機能のメソッド
     favorite = current_user.favorites.new(restaurant_id: @restaurant.id)
     favorite.save
-    #redirect_to restaurant_path(@restaurant)
   end
 
   def destroy
     @restaurant = Restaurant.find(params[:restaurant_id])
     favorite = current_user.favorites.find_by(restaurant_id: @restaurant.id)
     favorite.destroy
-    #redirect_to restaurant_path(restaurant)
   end
 
 end

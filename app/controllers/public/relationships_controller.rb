@@ -12,7 +12,6 @@ class Public::RelationshipsController < ApplicationController
   end
 
   def followings
-    #byebug
     user = User.find(params[:user_id])
     @users = user.followings
   end

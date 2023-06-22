@@ -30,7 +30,7 @@ class Public::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
-
+  #ログイン後の画面の遷移先
   def after_sign_in_path_for(resource)
     flash[:notice] = "ログインに成功しました！"
     restaurants_path
@@ -42,6 +42,8 @@ class Public::SessionsController < Devise::SessionsController
   def reject_user
     @user = User.find_by(name: params[:user][:name])
     if @user
+      #パラメーターから送信され該当するユーザーをデータベースから取得する
+      #valid_password?でユーザーが入力したパスワードが正しいかどうかを確認する
       if @user.valid_password?(params[:user][:password]) && (@user.is_deleted == false)
         flash[:notice] = "退会済みのためログインできません。再度ご登録をしてご利用ください。"
         redirect_to new_user_registoration

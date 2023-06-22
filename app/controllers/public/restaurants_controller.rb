@@ -1,4 +1,5 @@
 class Public::RestaurantsController < ApplicationController
+  #自然言語機能のAPIを呼んで来ている。
   require 'language'
   def new
     @restaurant = Restaurant.new
@@ -39,9 +40,10 @@ class Public::RestaurantsController < ApplicationController
       if params[:q].present? && params[:q][:name_cont].present?
         restrant_tags = RestaurantTag.where(tag_id: @tag_list.pluck(:id))
         @restaurants = Restaurant.where(id: restrant_tags.pluck(:restaurant_id))
-        # pp @tag_list,restrant_tags, @restaurants
       end
+      #レストランに紐ずくいいねを一括で取ってくる
       @restaurants = @restaurants.includes(:favorites).
+      #いいねされた日付を最新のものから並び替えるソート機能。配列にし（a,b）を比較している
         sort {|a,b|
           b.favorites.select(:created_at).order(created_at: :desc).first(1) <=>
           a.favorites.select(:created_at).order(created_at: :desc).first(1)
@@ -56,9 +58,10 @@ class Public::RestaurantsController < ApplicationController
     @restaurant_tags = @restaurant.tags
     @q = @restaurant.tags.ransack(params[:q])
     @tags = @q.result(distinct: true)
-    #@tags = Tag.all
+    #タグIDは存在しているか確認。存在している場合は実行する
     if params[:tag_id].present?
       @tag = Tag.find(params[:tag_id])
+      #取ってきたタグに紐ずくレストラン全てをとってくる
       @restaurant = @tag.restaurants
     end
   end
@@ -72,7 +75,9 @@ class Public::RestaurantsController < ApplicationController
     @restaurant = Restaurant.find(params[:id])
     @restaurant.score = Language.get_data(restaurant_params[:introduction])
     tag_list = params[:restaurant][:name].split(',')
+    #パラメータからのデータを使用して@restaurantを更新しようとする。
     if  @restaurant.update(restaurant_params)
+    #更新が成功した場合は、@restaurant.save_tag(tag_list)を呼び出して、@restaurantに関連するタグ情報を保存する
         @restaurant.save_tag(tag_list)
         redirect_to restaurant_path(@restaurant.id)
     else

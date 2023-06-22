@@ -60,10 +60,11 @@ class Public::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
+  #新規登録後の画面の遷移先
   def after_sign_in_path_for(resouce)
     restaurants_path
   end
-
+  #ログアウト後の画面の遷移先
   def after_sign_out_path_for(resouce)
     root_path
   end

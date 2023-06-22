@@ -14,7 +14,7 @@
     <div class="row">
       <% users.each do |user| %>
         <div class="col-md-4">
-          <div class="cardfollow shadow-lg">
+          <div class="cardfollow shadow-lg h-100 pb">
             <%= link_to user_path(user.id) do %>
               <%= image_tag user.get_profile_image(150, 150), class: "cord-img-top", style: "width:100%" %>
             <% end %>

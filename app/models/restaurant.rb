@@ -1,5 +1,5 @@
 class Restaurant < ApplicationRecord
-
+  #アソシエーション
   has_one_attached :image
   belongs_to :user
   has_many :comments, dependent: :destroy
@@ -22,15 +22,16 @@ class Restaurant < ApplicationRecord
   scope :old, -> {order(created_at: :asc)} #asc（昇順）
   scope :star_count, -> {order(star: :desc)}
 
-
-#フォームで入力された住所から緯度、経度を計算しています。
+  #地図機能
+  #フォームで入力された住所から緯度、経度を計算している。
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
-#空のデータを消す作業をしています。
+
+  #空のデータを消す作業をしている。
   after_destroy :destroy_empty_tag
 
-  #検索機能で設定したransackの渡すデータを設定している。
-  def self.ransackable_attributes(auth_object = nil)
+  #レストラン検索。設定したransackに渡すデータを設定している。
+  def self.ransackable_attributes(auth_object = nil) #(auth_object = nil)は省略可。今回は丁寧に全て書いてる。
     ["created_at", "id", "introduction", "shop_name", "updated_at", "user_id"]
   end
 
@@ -38,7 +39,7 @@ class Restaurant < ApplicationRecord
   def favorited_by?(user)
     user.present? && favorites.exists?(user_id: user.id)
   end
-
+  #タグ検索。設定したransackに渡すデータを設定している。
   def self.ransackable_associations(auth_object = nil)
     ["tags"]
   end
@@ -51,7 +52,7 @@ class Restaurant < ApplicationRecord
       image.variant(resize_to_limit: [width, height]).processed
   end
 
-  #タグコントローラーに渡すメソッドを定義しています。
+  #タグコントローラーに渡すメソッドを定義している。
   def save_tag(sent_tags)
     #タグが存在したら、タグの名前を全取得し配列にする。
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
@@ -74,14 +75,14 @@ class Restaurant < ApplicationRecord
       new_post_tag = Tag.find_or_create_by(name: new)
       self.tags << new_post_tag
     end
-
+    
   end
-#タグに紐づかない情報を探しています。
+  #タグに紐づかない情報を探している。
   def destroy_empty_tag
     Tag.where.missing(:restaurant_tags).destroy_all
   end
 
-#いいね通知を作成するメソッド
+  #いいね通知を作成するメソッド
   def create_notification_like!(current_user)
     # すでに「いいね」されているか検索
     temp = Notification.where(["visitor_id = ? and visited_id = ? and restaurant_id = ? and action = ? ", current_user.id, user_id, id, 'favorite'])
@@ -112,7 +113,7 @@ class Restaurant < ApplicationRecord
       save_notification_comment!(current_user, comment_id, user_id)
     end
   end
-
+  #実際の通知レコードを作成・保存するためのメソッド
   def save_notification_comment!(current_user, comment_id, visited_id)
     # コメントは複数回することが考えられるため、１つの投稿に複数回通知する
     notification = current_user.active_notifications.new(
@@ -126,7 +127,6 @@ class Restaurant < ApplicationRecord
       notification.checked = true
     end
     notification.save if notification.valid?
-    #byebug
   end
 end
 

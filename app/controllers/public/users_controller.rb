@@ -1,9 +1,9 @@
 class Public::UsersController < ApplicationController
-before_action :authenticate_user!
-#before_action :set_user, only: [:favorites]
+  #ユーザーがログイン済みであるかどうかを確認している
+  before_action :authenticate_user!
 
   def index
-
+    #whereメソッドを使用してクエリを構築、条件としてis_deleted属性がfalse（退会していない）であるユーザーを選択する
     @users = User.where(is_deleted: false).page(params[:page])
     @user = current_user
   end
@@ -18,18 +18,14 @@ before_action :authenticate_user!
     @user = User.find(params[:id])
   end
 
-def update
-  is_matching_login_user
-  @user = User.find(params[:id])
-  if @user.update(user_params)
-    redirect_to user_path(current_user.id)
-  else
-    render :edit
-  end
-end
-
-
-  def withdraw
+  def update
+    is_matching_login_user
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to user_path(current_user.id)
+    else
+      render :edit
+    end
   end
 
   def unsubscribe
@@ -52,13 +48,11 @@ end
     params.require(:user).permit(:name, :profile_image, :user_introduction)
   end
 
-  #def set_user
-    #@user = User.find(params[:id])
-  ##end
-
+  #このメソッドがついているところは自身のユーザーIDじゃなかったら現在のユーザーのページへ
+  #リダイレクトするようにしている
   def is_matching_login_user
     user_id = params[:id].to_i
-    unless user_id == current_user.id
+    unless user_id == current_user.id #ユーザーIDと現在のユーザーが一致しているか？（一致していたら）trueを返す
       redirect_to user_path(current_user.id)
     end
   end

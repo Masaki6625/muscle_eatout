@@ -4,10 +4,12 @@ class Tag < ApplicationRecord
   validates :name, uniqueness: true, presence: true
 
   #タグ検索機能のransackを書いています。
+  #タグモデルの中で紐ずくカラムを探している
   def self.ransackable_attributes(auth_object = nil)
     ["created_at","id","name","update_at"]
   end
 
+  #レストランとそれに紐ずくタグを探してる
   def self.ransackable_associations(auth_object = nil)
     ["restaurant_tags", "restaurants"]
   end
