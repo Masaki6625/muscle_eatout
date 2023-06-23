@@ -99,6 +99,7 @@ class User < ApplicationRecord
       self.restaurants.destroy_all
       self.comments.destroy_all
       self.favorites.destroy_all
+      #self.notifications.where(visited_id: self.id).destroy_all
       relationships.destroy_all
       reverse_of_relationships.destroy_all
     end
