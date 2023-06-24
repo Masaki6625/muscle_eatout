@@ -11,9 +11,6 @@ class User < ApplicationRecord
     end
   end
 
-  #ユーザーに紐づく情報を削除する。
-  #下のprivetaの中にあるメソッドから指定したデータをとってくる。
-  after_update :destroy_unsubscribe_user_info, if: -> { saved_change_to_is_deleted?(from:false,to:true) }
 
   #アソシエーションを行っている部分
   has_one_attached :profile_image
@@ -90,18 +87,12 @@ class User < ApplicationRecord
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
 
-
-  private
-
-#退会した会員に紐ずく情報を消す作業しています。
+  #退会した会員に紐ずく情報を消す作業しています。
   def destroy_unsubscribe_user_info
-    unless
       self.restaurants.destroy_all
       self.comments.destroy_all
       self.favorites.destroy_all
-      #self.notifications.where(visited_id: self.id).destroy_all
-      relationships.destroy_all
-      reverse_of_relationships.destroy_all
-    end
+      self.relationships.destroy_all
+      self.reverse_of_relationships.destroy_all
   end
 end

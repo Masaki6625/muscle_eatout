@@ -20,6 +20,8 @@ ActiveStorage.start()
 
 import Raty from "./raty.js";
 window.raty = function(elem,opt){
+    var element = $('#'+elem.id); //$('#'+elem.id);でid="star"をjquery化している（次に出てくるenpty();のため）
+    element.empty(); //empty();はjqueryのメソッドで情報を空にする
     var raty =  new Raty(elem,opt)
     raty.init();
     return raty;
