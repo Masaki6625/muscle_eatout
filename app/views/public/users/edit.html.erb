@@ -1,11 +1,13 @@
 <div class="container">
   <% if @user.errors.any? %>
-    <%= @user.errors.count %>件のエラーが発生しました
-    <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
+    <div class="alert alert-danger">
+      <%= @user.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
   <div class="row">
     <div class="col-lg-4 col-md-5 justify-content-center offset-md-4">

@@ -18,6 +18,7 @@ class Admin::SessionsController < Devise::SessionsController
   #   super
   # end
   
+  #ログイン後の画面遷移先
   def after_sign_in_path_for(resouce)
     admin_users_path
   end

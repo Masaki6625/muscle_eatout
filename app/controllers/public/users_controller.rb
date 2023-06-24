@@ -31,6 +31,7 @@ class Public::UsersController < ApplicationController
   def unsubscribe
     @user = current_user
     @user.update(is_deleted: true)
+    @user.destroy_unsubscribe_user_info
     reset_session
     flash[:notice] = "退会処理を実行しました"
     redirect_to root_path

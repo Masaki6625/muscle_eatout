@@ -39,13 +39,14 @@
                       (() => {
                         let elem = document.querySelector('#star');
                         let opt = {
-                        starOn: "<%= asset_path('star-on.png') %>",
-                        starOff: "<%= asset_path('star-off.png') %>",
-                        starHalf: "<%= asset_path('star-half.png') %>",
-                        score: <%= @restaurant.star %>,
-                        readOnly: true
+                          starOn: "<%= asset_path('star-on.png') %>",
+                          starOff: "<%= asset_path('star-off.png') %>",
+                          starHalf: "<%= asset_path('star-half.png') %>",
+                          score: <%= @restaurant.star %>,
+                          readOnly: true
                         };
-                      raty(elem, opt);})()
+                        raty(elem, opt);
+                      })()
                     </script>
                   </div>
                   <div class="row justify-content-center">
