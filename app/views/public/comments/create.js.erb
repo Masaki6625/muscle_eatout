@@ -1,3 +1,12 @@
-$(".comment").html("<%= j(render 'comments', restaurant: @restaurant) %>");
-<!--フォームを送信したあとにフォームの値を空にします-->
-$("textarea").val('');
+$('#error_message_area').empty();
+<% if !@comment.new_record? %>
+  $("#comment_wrapper").html("<%= j(render 'comments', restaurant: @restaurant) %>");
+  <!--フォームを送信したあとにフォームの値を空にします-->
+  $("#comment_comment").val('');
+<% else %>
+  <% @comment.errors.full_messages.each do |message| %>
+    $('#error_message_area').append(`
+      <p><%== message %></p>
+    `)
+  <% end %>
+<% end %>

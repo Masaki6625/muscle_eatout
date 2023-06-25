@@ -1,5 +1,6 @@
 <div class="form-group">
   <%= form_with model: [restaurant, comment], local: false do |f| %>
+    <div id="error_message_area"></div>
     <%= f.text_area :comment, row: 8, placeholder: "ここにコメントしてください(5文字以上)" %>
     <%= f.submit "送信する", class: "btn btn-primary btn-sm" %>
   <%end%>

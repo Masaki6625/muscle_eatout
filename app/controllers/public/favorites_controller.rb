@@ -1,5 +1,6 @@
 class Public::FavoritesController < ApplicationController
-
+  before_action :authenticate_user!
+  
   def create
     @restaurant = Restaurant.find(params[:restaurant_id])
     @restaurant.create_notification_like!(current_user) #通知機能のメソッド

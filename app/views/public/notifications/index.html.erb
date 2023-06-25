@@ -8,7 +8,7 @@
           <div>
             <span>
             <h1>通知一覧</h1>
-            <%= link_to '通知を全て削除', destroy_all_path, method: :delete, class: 'btn btn-danger btn-sm' %>
+            <%= link_to '通知を全て削除', destroy_all_path, method: :delete, class: 'btn btn-danger btn-sm',"data-confirm" => "実行すると通知が全て削除されてしまいます。本当に削除しますか？"  %>
             </span>
           </div>
         </div>

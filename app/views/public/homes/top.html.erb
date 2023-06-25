@@ -8,11 +8,13 @@
           おいしいをもっと楽しく、<br>
           もっと自分らしく。
         </p>
+        <% unless user_signed_in? %>
         <%= link_to "Sign up", new_user_registration_path, class:"btn btn-success btn-sm" %>
         <span class="text-white">|</span>
         <%= link_to "Log in", new_user_session_path , class:"btn btn-primary btn-sm" %>
         <span class="text-white">|</span>
         <%= link_to 'ゲストの方', guest_user_path, method: :post, class: "btn btn-secondary btn-sm" %>
+        <% end %>
       </div>
     </div>
   </div>

@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  #before_action :authenticate_user!
+  before_action :authenticate_admin!
   #before_action :if_not_admin
   #before_action :set_restaurant, only: [:index, :show ,:destroy]
   def index

@@ -1,6 +1,10 @@
 class Public::RestaurantsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :is_matching_login_user, only: [:edit, :update, :destroy]
+
   #自然言語機能のAPIを呼んで来ている。
   require 'language'
+  
   def new
     @restaurant = Restaurant.new
   end
@@ -9,9 +13,9 @@ class Public::RestaurantsController < ApplicationController
     @restaurant = Restaurant.new(restaurant_params)
     @restaurant.score = Language.get_data(restaurant_params[:introduction])
       @restaurant.user_id = current_user.id
-      tag_list = params[:restaurant][:name].split(',')
+      @tag_list = params[:restaurant][:name].split(',')
       if  @restaurant.save
-          @restaurant.save_tag(tag_list)
+          @restaurant.save_tag(@tag_list)
           redirect_to restaurant_path(@restaurant.id)
       else
         render :new
@@ -67,12 +71,10 @@ class Public::RestaurantsController < ApplicationController
   end
 
   def edit
-    @restaurant = Restaurant.find(params[:id])
     @tag_list = @restaurant.tags.pluck(:name).join(',')
   end
 
   def update
-    @restaurant = Restaurant.find(params[:id])
     @restaurant.score = Language.get_data(restaurant_params[:introduction])
     tag_list = params[:restaurant][:name].split(',')
     #パラメータからのデータを使用して@restaurantを更新しようとする。
@@ -86,14 +88,18 @@ class Public::RestaurantsController < ApplicationController
   end
 
   def destroy
-    restaurant = Restaurant.find(params[:id])
-    restaurant.destroy
+    @restaurant.destroy
     redirect_to restaurants_path
   end
 
   private
 
-    def restaurant_params
-      params.require(:restaurant).permit(:shop_name, :introduction, :image, :star, :address)
-    end
+  def restaurant_params
+    params.require(:restaurant).permit(:shop_name, :introduction, :image, :star, :address)
+  end
+  
+  def is_matching_login_user
+    @restaurant = current_user.restaurants.find_by(id: params[:id])
+    redirect_to root_path unless @restaurant
+  end
 end

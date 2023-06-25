@@ -1,3 +1,14 @@
+  <% if restaurant.errors.any? %>
+    <div class="alert alert-danger">
+      <%= restaurant.errors.count %>件のエラーが発生しました
+      <ul>
+        <% restaurant.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
 <h5>コメント件数：<%= restaurant.comments.count %></h5>
 <div class="border mb-3">
   <% restaurant.comments.each do |comment| %>

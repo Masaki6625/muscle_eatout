@@ -9,6 +9,7 @@ class Public::UsersController < ApplicationController
   end
 
   def show
+    @user = current_user
     @user = User.find(params[:id])
     @restaurant = @user.restaurants
   end
@@ -42,6 +43,7 @@ class Public::UsersController < ApplicationController
     favorites = Favorite.where(user_id: @user.id).pluck(:restaurant_id)
     @favorite_restaurants = Restaurant.find(favorites)
   end
+
 
   private
 
