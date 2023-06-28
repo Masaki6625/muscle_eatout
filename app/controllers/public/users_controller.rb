@@ -1,6 +1,8 @@
 class Public::UsersController < ApplicationController
   #ユーザーがログイン済みであるかどうかを確認している
   before_action :authenticate_user!
+  #ゲストで制限するメソッドを呼び確認を行っている
+  before_action :ensure_guest_user, only: [:edit]
 
   def index
     #whereメソッドを使用してクエリを構築、条件としてis_deleted属性がfalse（退会していない）であるユーザーを選択する
@@ -57,6 +59,13 @@ class Public::UsersController < ApplicationController
     user_id = params[:id].to_i
     unless user_id == current_user.id #ユーザーIDと現在のユーザーが一致しているか？（一致していたら）trueを返す
       redirect_to user_path(current_user.id)
+    end
+  end
+  #探してきたユーザーのemailが条件と一致していたらユーザー詳細へリダイレクトする（制限を行う）
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.email == "guest@example1.com"
+      redirect_to restaurants_path , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
     end
   end
 end
