@@ -33,7 +33,7 @@
         <div class="row col-12">
         <% @restaurants.each do |restaurant| %>
           <div class="col-sm-6 col-lg-4 col-md-6">
-            <div class="cardindex mt-4 mb-5 shadow-lg" style="height: 90%;">
+            <div class="cardindex mt-4 mb-5 shadow-lg" style="height: 95%;">
               <%= link_to restaurant_path(restaurant.id) do %>
                 <%= image_tag restaurant.get_image(253, 255), class: "card-img-top", style: "height: 30%;" %>
               <% end %>

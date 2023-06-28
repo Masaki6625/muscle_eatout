@@ -1,10 +1,15 @@
+<!--コメントのエラーを出す条件-->
 $('#error_message_area').empty();
+<!--コメントが正しく入力されていたら-->
 <% if !@comment.new_record? %>
   $("#comment_wrapper").html("<%= j(render 'comments', restaurant: @restaurant) %>");
   <!--フォームを送信したあとにフォームの値を空にします-->
   $("#comment_comment").val('');
+  <!--コメントが正しく入力されなかったら-->
 <% else %>
+  <!--jsファイルだけどルビーの記述の仕方をすることができる-->
   <% @comment.errors.full_messages.each do |message| %>
+  <!--``で囲うと複数の文字列として書くことができるようになるまたエラーメッセージを引っ張ってきてる-->
     $('#error_message_area').append(`
       <p><%== message %></p>
     `)
