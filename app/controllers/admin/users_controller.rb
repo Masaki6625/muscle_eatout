@@ -1,7 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!
-  #before_action :if_not_admin
-  #before_action :set_restaurant, only: [:index, :show ,:destroy]
+
   def index
     @users = User.all
   end
@@ -24,6 +23,4 @@ class Admin::UsersController < ApplicationController
     flash[:notice] = "退会処理を実行しました"
     redirect_to admin_users_path
   end
-
-  
 end
