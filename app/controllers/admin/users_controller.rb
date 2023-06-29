@@ -20,7 +20,7 @@ class Admin::UsersController < ApplicationController
   def unsubscribe
     @user = User.find(params[:id])
     @user.update(is_deleted: !@user.is_deleted)
-    reset_session
+    @user.destroy_unsubscribe_user_info
     flash[:notice] = "退会処理を実行しました"
     redirect_to admin_users_path
   end
