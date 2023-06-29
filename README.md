@@ -54,3 +54,4 @@
 - https://www.ac-illust.com/main/search_result.php?word=%E5%A4%96%E9%A3%9F（レストランの写真）
 - https://www.photo-ac.com/main/search?q=%E3%83%AC%E3%82%B9%E3%83%88%E3%83%A9%E3%83%B3&srt=dlrank&nq=&sizesec=all&orientation=all&c_names%5B%5D=6&creator=&ngcreator=&color=all&mdlrlrsec=all&prprlrsec=all&model_count=-1&age=all&qt=&qid=(レストランの写真
 - https://publicdomainq.net/sunset-group-silhouette-0029851/（ユーザーのヘッダー写真）
+- https://www.shutterstock.com/ja/image-photo/programming-language-ruby-inscription-on-background-1445968487(トップページの写真)
